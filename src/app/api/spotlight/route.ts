@@ -11,17 +11,20 @@ interface CreateSpotlightRequest {
 
 /**
  * GET /api/spotlight
- * Gets all spotlight startups
- * Returns up to 20 spotlights when 10+ are filled
+ * Gets all active spotlight startups (not expired)
+ * Returns up to 20 active spotlights
  */
 export async function GET() {
   return safeHandler(async () => {
-    const totalCount = await prisma.spotlight.count();
-    const takeLimit = totalCount >= 10 ? 20 : 10;
+    const now = new Date();
 
     const spotlights = await prisma.spotlight.findMany({
+      where: {
+        isActive: true,
+        OR: [{ expiresAt: null }, { expiresAt: { gt: now } }],
+      },
       orderBy: [{ position: "asc" }, { createdAt: "desc" }],
-      take: takeLimit,
+      take: 20,
     });
 
     return spotlights;
@@ -66,7 +69,7 @@ export async function POST(request: NextRequest) {
       ? lastSpotlight.position + 1
       : 1;
 
-    // Create spotlight
+    // Create spotlight (free spotlights are active by default)
     const spotlight = await prisma.spotlight.create({
       data: {
         name: body.name.trim(),
@@ -74,6 +77,7 @@ export async function POST(request: NextRequest) {
         url: urlToSave,
         logo: body.logo?.trim() || null,
         position: nextPosition,
+        isActive: true,
       },
     });
 

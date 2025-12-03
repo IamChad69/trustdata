@@ -85,3 +85,17 @@ export function getClientBaseUrl(): string {
   // Server-side, use the server function
   return getBaseUrl();
 }
+
+/**
+ * Get Stripe secret key
+ */
+export function getStripeSecretKey(): string {
+  return getEnv("STRIPE_SECRET_KEY");
+}
+
+/**
+ * Get Stripe publishable key
+ */
+export function getStripePublishableKey(): string {
+  return getEnv("NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY");
+}

@@ -163,6 +163,12 @@ exports.Prisma.SpotlightScalarFieldEnum = {
   url: 'url',
   logo: 'logo',
   position: 'position',
+  isActive: 'isActive',
+  expiresAt: 'expiresAt',
+  stripePaymentIntentId: 'stripePaymentIntentId',
+  stripeSessionId: 'stripeSessionId',
+  paymentAmount: 'paymentAmount',
+  paidAt: 'paidAt',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 };

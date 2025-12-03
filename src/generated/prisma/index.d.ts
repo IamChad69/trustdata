@@ -3584,10 +3584,12 @@ export namespace Prisma {
 
   export type SpotlightAvgAggregateOutputType = {
     position: number | null
+    paymentAmount: number | null
   }
 
   export type SpotlightSumAggregateOutputType = {
     position: number | null
+    paymentAmount: number | null
   }
 
   export type SpotlightMinAggregateOutputType = {
@@ -3597,6 +3599,12 @@ export namespace Prisma {
     url: string | null
     logo: string | null
     position: number | null
+    isActive: boolean | null
+    expiresAt: Date | null
+    stripePaymentIntentId: string | null
+    stripeSessionId: string | null
+    paymentAmount: number | null
+    paidAt: Date | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -3608,6 +3616,12 @@ export namespace Prisma {
     url: string | null
     logo: string | null
     position: number | null
+    isActive: boolean | null
+    expiresAt: Date | null
+    stripePaymentIntentId: string | null
+    stripeSessionId: string | null
+    paymentAmount: number | null
+    paidAt: Date | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -3619,6 +3633,12 @@ export namespace Prisma {
     url: number
     logo: number
     position: number
+    isActive: number
+    expiresAt: number
+    stripePaymentIntentId: number
+    stripeSessionId: number
+    paymentAmount: number
+    paidAt: number
     createdAt: number
     updatedAt: number
     _all: number
@@ -3627,10 +3647,12 @@ export namespace Prisma {
 
   export type SpotlightAvgAggregateInputType = {
     position?: true
+    paymentAmount?: true
   }
 
   export type SpotlightSumAggregateInputType = {
     position?: true
+    paymentAmount?: true
   }
 
   export type SpotlightMinAggregateInputType = {
@@ -3640,6 +3662,12 @@ export namespace Prisma {
     url?: true
     logo?: true
     position?: true
+    isActive?: true
+    expiresAt?: true
+    stripePaymentIntentId?: true
+    stripeSessionId?: true
+    paymentAmount?: true
+    paidAt?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -3651,6 +3679,12 @@ export namespace Prisma {
     url?: true
     logo?: true
     position?: true
+    isActive?: true
+    expiresAt?: true
+    stripePaymentIntentId?: true
+    stripeSessionId?: true
+    paymentAmount?: true
+    paidAt?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -3662,6 +3696,12 @@ export namespace Prisma {
     url?: true
     logo?: true
     position?: true
+    isActive?: true
+    expiresAt?: true
+    stripePaymentIntentId?: true
+    stripeSessionId?: true
+    paymentAmount?: true
+    paidAt?: true
     createdAt?: true
     updatedAt?: true
     _all?: true
@@ -3760,6 +3800,12 @@ export namespace Prisma {
     url: string
     logo: string | null
     position: number | null
+    isActive: boolean
+    expiresAt: Date | null
+    stripePaymentIntentId: string | null
+    stripeSessionId: string | null
+    paymentAmount: number | null
+    paidAt: Date | null
     createdAt: Date
     updatedAt: Date
     _count: SpotlightCountAggregateOutputType | null
@@ -3790,6 +3836,12 @@ export namespace Prisma {
     url?: boolean
     logo?: boolean
     position?: boolean
+    isActive?: boolean
+    expiresAt?: boolean
+    stripePaymentIntentId?: boolean
+    stripeSessionId?: boolean
+    paymentAmount?: boolean
+    paidAt?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }, ExtArgs["result"]["spotlight"]>
@@ -3801,6 +3853,12 @@ export namespace Prisma {
     url?: boolean
     logo?: boolean
     position?: boolean
+    isActive?: boolean
+    expiresAt?: boolean
+    stripePaymentIntentId?: boolean
+    stripeSessionId?: boolean
+    paymentAmount?: boolean
+    paidAt?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }, ExtArgs["result"]["spotlight"]>
@@ -3812,6 +3870,12 @@ export namespace Prisma {
     url?: boolean
     logo?: boolean
     position?: boolean
+    isActive?: boolean
+    expiresAt?: boolean
+    stripePaymentIntentId?: boolean
+    stripeSessionId?: boolean
+    paymentAmount?: boolean
+    paidAt?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }, ExtArgs["result"]["spotlight"]>
@@ -3823,11 +3887,17 @@ export namespace Prisma {
     url?: boolean
     logo?: boolean
     position?: boolean
+    isActive?: boolean
+    expiresAt?: boolean
+    stripePaymentIntentId?: boolean
+    stripeSessionId?: boolean
+    paymentAmount?: boolean
+    paidAt?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }
 
-  export type SpotlightOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "tagline" | "url" | "logo" | "position" | "createdAt" | "updatedAt", ExtArgs["result"]["spotlight"]>
+  export type SpotlightOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "tagline" | "url" | "logo" | "position" | "isActive" | "expiresAt" | "stripePaymentIntentId" | "stripeSessionId" | "paymentAmount" | "paidAt" | "createdAt" | "updatedAt", ExtArgs["result"]["spotlight"]>
 
   export type $SpotlightPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Spotlight"
@@ -3839,6 +3909,12 @@ export namespace Prisma {
       url: string
       logo: string | null
       position: number | null
+      isActive: boolean
+      expiresAt: Date | null
+      stripePaymentIntentId: string | null
+      stripeSessionId: string | null
+      paymentAmount: number | null
+      paidAt: Date | null
       createdAt: Date
       updatedAt: Date
     }, ExtArgs["result"]["spotlight"]>
@@ -4270,6 +4346,12 @@ export namespace Prisma {
     readonly url: FieldRef<"Spotlight", 'String'>
     readonly logo: FieldRef<"Spotlight", 'String'>
     readonly position: FieldRef<"Spotlight", 'Int'>
+    readonly isActive: FieldRef<"Spotlight", 'Boolean'>
+    readonly expiresAt: FieldRef<"Spotlight", 'DateTime'>
+    readonly stripePaymentIntentId: FieldRef<"Spotlight", 'String'>
+    readonly stripeSessionId: FieldRef<"Spotlight", 'String'>
+    readonly paymentAmount: FieldRef<"Spotlight", 'Int'>
+    readonly paidAt: FieldRef<"Spotlight", 'DateTime'>
     readonly createdAt: FieldRef<"Spotlight", 'DateTime'>
     readonly updatedAt: FieldRef<"Spotlight", 'DateTime'>
   }
@@ -4701,6 +4783,12 @@ export namespace Prisma {
     url: 'url',
     logo: 'logo',
     position: 'position',
+    isActive: 'isActive',
+    expiresAt: 'expiresAt',
+    stripePaymentIntentId: 'stripePaymentIntentId',
+    stripeSessionId: 'stripeSessionId',
+    paymentAmount: 'paymentAmount',
+    paidAt: 'paidAt',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt'
   };
@@ -4776,6 +4864,13 @@ export namespace Prisma {
    * Reference to a field of type 'Int[]'
    */
   export type ListIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int[]'>
+    
+
+
+  /**
+   * Reference to a field of type 'Boolean'
+   */
+  export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>
     
 
 
@@ -5021,6 +5116,12 @@ export namespace Prisma {
     url?: StringFilter<"Spotlight"> | string
     logo?: StringNullableFilter<"Spotlight"> | string | null
     position?: IntNullableFilter<"Spotlight"> | number | null
+    isActive?: BoolFilter<"Spotlight"> | boolean
+    expiresAt?: DateTimeNullableFilter<"Spotlight"> | Date | string | null
+    stripePaymentIntentId?: StringNullableFilter<"Spotlight"> | string | null
+    stripeSessionId?: StringNullableFilter<"Spotlight"> | string | null
+    paymentAmount?: IntNullableFilter<"Spotlight"> | number | null
+    paidAt?: DateTimeNullableFilter<"Spotlight"> | Date | string | null
     createdAt?: DateTimeFilter<"Spotlight"> | Date | string
     updatedAt?: DateTimeFilter<"Spotlight"> | Date | string
   }
@@ -5032,6 +5133,12 @@ export namespace Prisma {
     url?: SortOrder
     logo?: SortOrderInput | SortOrder
     position?: SortOrderInput | SortOrder
+    isActive?: SortOrder
+    expiresAt?: SortOrderInput | SortOrder
+    stripePaymentIntentId?: SortOrderInput | SortOrder
+    stripeSessionId?: SortOrderInput | SortOrder
+    paymentAmount?: SortOrderInput | SortOrder
+    paidAt?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -5046,6 +5153,12 @@ export namespace Prisma {
     url?: StringFilter<"Spotlight"> | string
     logo?: StringNullableFilter<"Spotlight"> | string | null
     position?: IntNullableFilter<"Spotlight"> | number | null
+    isActive?: BoolFilter<"Spotlight"> | boolean
+    expiresAt?: DateTimeNullableFilter<"Spotlight"> | Date | string | null
+    stripePaymentIntentId?: StringNullableFilter<"Spotlight"> | string | null
+    stripeSessionId?: StringNullableFilter<"Spotlight"> | string | null
+    paymentAmount?: IntNullableFilter<"Spotlight"> | number | null
+    paidAt?: DateTimeNullableFilter<"Spotlight"> | Date | string | null
     createdAt?: DateTimeFilter<"Spotlight"> | Date | string
     updatedAt?: DateTimeFilter<"Spotlight"> | Date | string
   }, "id">
@@ -5057,6 +5170,12 @@ export namespace Prisma {
     url?: SortOrder
     logo?: SortOrderInput | SortOrder
     position?: SortOrderInput | SortOrder
+    isActive?: SortOrder
+    expiresAt?: SortOrderInput | SortOrder
+    stripePaymentIntentId?: SortOrderInput | SortOrder
+    stripeSessionId?: SortOrderInput | SortOrder
+    paymentAmount?: SortOrderInput | SortOrder
+    paidAt?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     _count?: SpotlightCountOrderByAggregateInput
@@ -5076,6 +5195,12 @@ export namespace Prisma {
     url?: StringWithAggregatesFilter<"Spotlight"> | string
     logo?: StringNullableWithAggregatesFilter<"Spotlight"> | string | null
     position?: IntNullableWithAggregatesFilter<"Spotlight"> | number | null
+    isActive?: BoolWithAggregatesFilter<"Spotlight"> | boolean
+    expiresAt?: DateTimeNullableWithAggregatesFilter<"Spotlight"> | Date | string | null
+    stripePaymentIntentId?: StringNullableWithAggregatesFilter<"Spotlight"> | string | null
+    stripeSessionId?: StringNullableWithAggregatesFilter<"Spotlight"> | string | null
+    paymentAmount?: IntNullableWithAggregatesFilter<"Spotlight"> | number | null
+    paidAt?: DateTimeNullableWithAggregatesFilter<"Spotlight"> | Date | string | null
     createdAt?: DateTimeWithAggregatesFilter<"Spotlight"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"Spotlight"> | Date | string
   }
@@ -5342,6 +5467,12 @@ export namespace Prisma {
     url: string
     logo?: string | null
     position?: number | null
+    isActive?: boolean
+    expiresAt?: Date | string | null
+    stripePaymentIntentId?: string | null
+    stripeSessionId?: string | null
+    paymentAmount?: number | null
+    paidAt?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -5353,6 +5484,12 @@ export namespace Prisma {
     url: string
     logo?: string | null
     position?: number | null
+    isActive?: boolean
+    expiresAt?: Date | string | null
+    stripePaymentIntentId?: string | null
+    stripeSessionId?: string | null
+    paymentAmount?: number | null
+    paidAt?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -5364,6 +5501,12 @@ export namespace Prisma {
     url?: StringFieldUpdateOperationsInput | string
     logo?: NullableStringFieldUpdateOperationsInput | string | null
     position?: NullableIntFieldUpdateOperationsInput | number | null
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    expiresAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    stripePaymentIntentId?: NullableStringFieldUpdateOperationsInput | string | null
+    stripeSessionId?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentAmount?: NullableIntFieldUpdateOperationsInput | number | null
+    paidAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -5375,6 +5518,12 @@ export namespace Prisma {
     url?: StringFieldUpdateOperationsInput | string
     logo?: NullableStringFieldUpdateOperationsInput | string | null
     position?: NullableIntFieldUpdateOperationsInput | number | null
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    expiresAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    stripePaymentIntentId?: NullableStringFieldUpdateOperationsInput | string | null
+    stripeSessionId?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentAmount?: NullableIntFieldUpdateOperationsInput | number | null
+    paidAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -5386,6 +5535,12 @@ export namespace Prisma {
     url: string
     logo?: string | null
     position?: number | null
+    isActive?: boolean
+    expiresAt?: Date | string | null
+    stripePaymentIntentId?: string | null
+    stripeSessionId?: string | null
+    paymentAmount?: number | null
+    paidAt?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -5397,6 +5552,12 @@ export namespace Prisma {
     url?: StringFieldUpdateOperationsInput | string
     logo?: NullableStringFieldUpdateOperationsInput | string | null
     position?: NullableIntFieldUpdateOperationsInput | number | null
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    expiresAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    stripePaymentIntentId?: NullableStringFieldUpdateOperationsInput | string | null
+    stripeSessionId?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentAmount?: NullableIntFieldUpdateOperationsInput | number | null
+    paidAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -5408,6 +5569,12 @@ export namespace Prisma {
     url?: StringFieldUpdateOperationsInput | string
     logo?: NullableStringFieldUpdateOperationsInput | string | null
     position?: NullableIntFieldUpdateOperationsInput | number | null
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    expiresAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    stripePaymentIntentId?: NullableStringFieldUpdateOperationsInput | string | null
+    stripeSessionId?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentAmount?: NullableIntFieldUpdateOperationsInput | number | null
+    paidAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -5722,6 +5889,22 @@ export namespace Prisma {
     _max?: NestedIntFilter<$PrismaModel>
   }
 
+  export type BoolFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolFilter<$PrismaModel> | boolean
+  }
+
+  export type DateTimeNullableFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
+  }
+
   export type SpotlightCountOrderByAggregateInput = {
     id?: SortOrder
     name?: SortOrder
@@ -5729,12 +5912,19 @@ export namespace Prisma {
     url?: SortOrder
     logo?: SortOrder
     position?: SortOrder
+    isActive?: SortOrder
+    expiresAt?: SortOrder
+    stripePaymentIntentId?: SortOrder
+    stripeSessionId?: SortOrder
+    paymentAmount?: SortOrder
+    paidAt?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
 
   export type SpotlightAvgOrderByAggregateInput = {
     position?: SortOrder
+    paymentAmount?: SortOrder
   }
 
   export type SpotlightMaxOrderByAggregateInput = {
@@ -5744,6 +5934,12 @@ export namespace Prisma {
     url?: SortOrder
     logo?: SortOrder
     position?: SortOrder
+    isActive?: SortOrder
+    expiresAt?: SortOrder
+    stripePaymentIntentId?: SortOrder
+    stripeSessionId?: SortOrder
+    paymentAmount?: SortOrder
+    paidAt?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -5755,12 +5951,41 @@ export namespace Prisma {
     url?: SortOrder
     logo?: SortOrder
     position?: SortOrder
+    isActive?: SortOrder
+    expiresAt?: SortOrder
+    stripePaymentIntentId?: SortOrder
+    stripeSessionId?: SortOrder
+    paymentAmount?: SortOrder
+    paidAt?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
 
   export type SpotlightSumOrderByAggregateInput = {
     position?: SortOrder
+    paymentAmount?: SortOrder
+  }
+
+  export type BoolWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedBoolFilter<$PrismaModel>
+    _max?: NestedBoolFilter<$PrismaModel>
+  }
+
+  export type DateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableWithAggregatesFilter<$PrismaModel> | Date | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedDateTimeNullableFilter<$PrismaModel>
+    _max?: NestedDateTimeNullableFilter<$PrismaModel>
   }
 
   export type DatabaseConnectionCreateselectedTablesInput = {
@@ -5854,6 +6079,14 @@ export namespace Prisma {
     upsert?: DatabaseConnectionUpsertWithoutMetricSnapshotInput
     connect?: DatabaseConnectionWhereUniqueInput
     update?: XOR<XOR<DatabaseConnectionUpdateToOneWithWhereWithoutMetricSnapshotInput, DatabaseConnectionUpdateWithoutMetricSnapshotInput>, DatabaseConnectionUncheckedUpdateWithoutMetricSnapshotInput>
+  }
+
+  export type BoolFieldUpdateOperationsInput = {
+    set?: boolean
+  }
+
+  export type NullableDateTimeFieldUpdateOperationsInput = {
+    set?: Date | string | null
   }
 
   export type NestedStringFilter<$PrismaModel = never> = {
@@ -6017,6 +6250,44 @@ export namespace Prisma {
     gt?: number | FloatFieldRefInput<$PrismaModel>
     gte?: number | FloatFieldRefInput<$PrismaModel>
     not?: NestedFloatFilter<$PrismaModel> | number
+  }
+
+  export type NestedBoolFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolFilter<$PrismaModel> | boolean
+  }
+
+  export type NestedDateTimeNullableFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
+  }
+
+  export type NestedBoolWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedBoolFilter<$PrismaModel>
+    _max?: NestedBoolFilter<$PrismaModel>
+  }
+
+  export type NestedDateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableWithAggregatesFilter<$PrismaModel> | Date | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedDateTimeNullableFilter<$PrismaModel>
+    _max?: NestedDateTimeNullableFilter<$PrismaModel>
   }
 
   export type MetricSnapshotCreateWithoutDatabaseConnectionInput = {

@@ -50,16 +50,23 @@ model MetricSnapshot {
 }
 
 model Spotlight {
-  id          String   @id @default(cuid())
-  name        String
-  tagline     String
-  url         String
-  logo        String?
-  position    Int?
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+  id                   String    @id @default(cuid())
+  name                 String
+  tagline              String
+  url                  String
+  logo                 String?
+  position             Int?
+  isActive             Boolean   @default(true)
+  expiresAt            DateTime?
+  stripePaymentIntentId String?
+  stripeSessionId      String?
+  paymentAmount        Int?      // Amount in cents
+  paidAt               DateTime?
+  createdAt            DateTime  @default(now())
+  updatedAt            DateTime  @updatedAt
 
   @@index([position])
+  @@index([isActive, expiresAt])
 }
 
 enum MessageType {
