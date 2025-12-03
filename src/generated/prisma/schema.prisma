@@ -1,0 +1,68 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model DatabaseConnection {
+  id                 String           @id
+  name               String
+  provider           String
+  connectionString   String
+  selectedTables     String[]
+  createdAt          DateTime         @default(now())
+  updatedAt          DateTime
+  startupName        String
+  slug               String?          @unique
+  paidUsers          Int?
+  totalUsers         Int?
+  category           String?
+  description        String?
+  founderAvatar      String?
+  founderHandle      String?
+  founderName        String?
+  logo               String?
+  tagline            String?
+  website            String?
+  readOnlyConnString String?
+  readOnlyRoleName   String?
+  MetricSnapshot     MetricSnapshot[]
+}
+
+model MetricSnapshot {
+  id                 String             @id
+  connectionId       String
+  date               DateTime           @db.Date
+  totalUsers         Int                @default(0)
+  paidUsers          Int                @default(0)
+  activeUsers        Int                @default(0)
+  newSignups         Int                @default(0)
+  churnedUsers       Int                @default(0)
+  createdAt          DateTime           @default(now())
+  DatabaseConnection DatabaseConnection @relation(fields: [connectionId], references: [id], onDelete: Cascade)
+
+  @@unique([connectionId, date])
+  @@index([connectionId, date])
+}
+
+model Spotlight {
+  id        String   @id @default(cuid())
+  name      String
+  tagline   String
+  url       String
+  logo      String?
+  position  Int?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([position])
+}
+
+enum MessageType {
+  RESULT
+  ERROR
+}
