@@ -95,10 +95,10 @@ export function StatsSection({
 
   return (
     <>
-      <div className="flex w-[60%] h-full self-stretch">
+      <div className="hidden sm:flex w-full sm:w-[60%] h-full self-stretch">
         <div className="flex-1 flex flex-col">
           {/* Unified Grid Container */}
-          <div className=" grid grid-cols-2 grid-rows-[48px_1fr_64px] flex-1  border-l border-r  border-gray-300">
+          <div className="grid grid-cols-2 grid-rows-[48px_1fr_64px] flex-1 border-l border-r border-gray-300">
             {/* Top Row - Left Column (Two Buttons) */}
             <div className="grid grid-cols-1 border-r border-b border-gray-300">
               {/* <button

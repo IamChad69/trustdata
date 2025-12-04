@@ -17,7 +17,7 @@ export function StartupGrid({ startups }: StartupGridProps) {
   }
 
   return (
-    <div className="grid mt-8 grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6 min-w-[320px] items-stretch">
+    <div className="grid mt-4 sm:mt-8 grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4 sm:gap-6 items-stretch">
       {startups.map((startup, index) => (
         <StartupCard key={startup.id || index} startup={startup} />
       ))}

@@ -4,8 +4,8 @@ import Image from "next/image";
 
 export function Footer() {
   return (
-    <footer className="bg-[#e4e4e4] flex  items-center border-t border-gray-300 mt-auto">
-      <div className="max-w-7xl mx-auto px-6 py-12 w-full">
+    <footer className="bg-[#e4e4e4] flex items-center border-t border-gray-300 mt-auto">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 py-8 sm:py-12 w-full">
         <div className="space-y-4 flex flex-col items-center">
           <Image
             src="/trustdb-logomark.svg"

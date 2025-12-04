@@ -25,6 +25,7 @@ import {
   Upload,
   Trash2,
   PenTool,
+  Loader2,
 } from "lucide-react";
 
 interface StartupModalProps {
@@ -97,8 +98,15 @@ export function StartupModal({
   const [founderAvatar, setFounderAvatar] = useState("");
   const [error, setError] = useState<string | null>(null);
   const [isConnecting, setIsConnecting] = useState(false);
+  const [isSaving, setIsSaving] = useState(false);
   const [, setIsLoadingStartupData] = useState(false);
   const [connectionId, setConnectionId] = useState<string | null>(null);
+  const [isFetchingMetrics, setIsFetchingMetrics] = useState(false);
+  const [metricsFetchProgress, setMetricsFetchProgress] = useState<string>("");
+  const [fetchedMetrics, setFetchedMetrics] = useState<{
+    totalUsers: number | null;
+    paidUsers: number | null;
+  } | null>(null);
   const [isEditingStartupName, setIsEditingStartupName] = useState(false);
   const [editingSlug, setEditingSlug] = useState(false);
   const [editingTagline, setEditingTagline] = useState(false);
@@ -110,6 +118,46 @@ export function StartupModal({
   const displayProvider = hoveredProvider || selectedProvider;
   const providerConfig: DatabaseProviderConfig =
     getProviderConfig(displayProvider);
+
+  // Function to fetch metrics in the background
+  const fetchMetricsInBackground = async (connId: string) => {
+    setIsFetchingMetrics(true);
+    setMetricsFetchProgress("Connecting to database...");
+
+    try {
+      setMetricsFetchProgress("Fetching user metrics...");
+      const response = await fetch(`/api/connect/${connId}/metrics`, {
+        method: "POST",
+      });
+
+      const result = await response.json();
+
+      if (result.success !== false && result.data) {
+        setFetchedMetrics({
+          totalUsers: result.data.totalUsers ?? null,
+          paidUsers: result.data.paidUsers ?? null,
+        });
+        setMetricsFetchProgress("Metrics fetched successfully!");
+      } else {
+        throw new Error(result.message || "Failed to fetch metrics");
+      }
+    } catch (err) {
+      console.error("Error fetching metrics:", err);
+      setMetricsFetchProgress("Metrics will be fetched later");
+      // Don't show error to user - this is background operation
+    } finally {
+      setIsFetchingMetrics(false);
+      // Clear progress message after a delay
+      setTimeout(() => setMetricsFetchProgress(""), 2000);
+    }
+  };
+
+  // Fetch metrics when connectionId is set (for new connections)
+  useEffect(() => {
+    if (connectionId && !editingStartupId && step === 4) {
+      fetchMetricsInBackground(connectionId);
+    }
+  }, [connectionId, step, editingStartupId]);
 
   const handleProviderSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -201,6 +249,9 @@ export function StartupModal({
 
         // Store connection ID
         setConnectionId(receivedConnectionId);
+
+        // Start fetching metrics in the background
+        fetchMetricsInBackground(receivedConnectionId);
       }
 
       setIsConnecting(false);
@@ -219,10 +270,12 @@ export function StartupModal({
   const handleStartupDetailsSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError(null);
+    setIsSaving(true);
 
     // Validate connectionId exists
     if (!connectionId) {
       setError("Connection ID is missing. Please connect your database first.");
+      setIsSaving(false);
       return;
     }
 
@@ -261,10 +314,12 @@ export function StartupModal({
     const startupNameToUse = finalStartupName || editingStartupName || "";
     if (!startupNameToUse.trim()) {
       setError("Startup name is required");
+      setIsSaving(false);
       return;
     }
     if (!finalSlug) {
       setError("Slug is required");
+      setIsSaving(false);
       return;
     }
 
@@ -273,14 +328,36 @@ export function StartupModal({
       setError(
         "Slug must contain only lowercase letters, numbers, and hyphens"
       );
+      setIsSaving(false);
       return;
     }
 
-    // Validate website URL format if provided
-    if (website.trim() && !/^https?:\/\/.+/.test(website.trim())) {
+    // Validate required fields
+    const currentTagline = editingTagline ? tempTagline : tagline;
+    if (!currentTagline.trim()) {
+      setError("Tagline is required");
+      setIsSaving(false);
+      return;
+    }
+
+    if (!description.trim()) {
+      setError("Description is required");
+      setIsSaving(false);
+      return;
+    }
+
+    // Validate website is required and has valid format
+    if (!website.trim()) {
+      setError("Website is required");
+      setIsSaving(false);
+      return;
+    }
+
+    if (!/^https?:\/\/.+/.test(website.trim())) {
       setError(
         "Website must be a valid URL (starting with http:// or https://)"
       );
+      setIsSaving(false);
       return;
     }
 
@@ -297,21 +374,14 @@ export function StartupModal({
       // Build request body - only include fields that have values or are being updated
       const requestBody: Record<string, string | undefined> = {};
 
-      // Always include startup name if we have it (required)
-      if (startupNameToUse.trim()) {
-        requestBody.startupName = startupNameToUse.trim();
-      }
+      // Always include required fields
+      requestBody.startupName = startupNameToUse.trim();
+      requestBody.slug = finalSlug.trim();
 
-      // Always include slug if we have it (required)
-      if (finalSlug.trim()) {
-        requestBody.slug = finalSlug.trim();
-      }
-
-      // Include optional fields only if they have values
       const currentTagline = editingTagline ? tempTagline : tagline;
-      if (currentTagline.trim()) requestBody.tagline = currentTagline.trim();
-      if (description.trim()) requestBody.description = description.trim();
-      if (website.trim()) requestBody.website = website.trim();
+      requestBody.tagline = currentTagline.trim();
+      requestBody.description = description.trim();
+      requestBody.website = website.trim();
       if (category.trim()) requestBody.category = category.trim();
       if (logo.trim()) requestBody.logo = logo.trim();
       if (founderName.trim()) requestBody.founderName = founderName.trim();
@@ -319,6 +389,22 @@ export function StartupModal({
         requestBody.founderHandle = founderHandle.trim();
       if (founderAvatar.trim())
         requestBody.founderAvatar = founderAvatar.trim();
+
+      // Include fetched metrics if available
+      if (fetchedMetrics) {
+        if (
+          fetchedMetrics.totalUsers !== null &&
+          fetchedMetrics.totalUsers !== undefined
+        ) {
+          requestBody.totalUsers = String(fetchedMetrics.totalUsers);
+        }
+        if (
+          fetchedMetrics.paidUsers !== null &&
+          fetchedMetrics.paidUsers !== undefined
+        ) {
+          requestBody.paidUsers = String(fetchedMetrics.paidUsers);
+        }
+      }
 
       const response = await fetch(`/api/connect/${updateId}`, {
         method: "PATCH",
@@ -374,6 +460,8 @@ export function StartupModal({
       } else {
         setError("An unexpected error occurred");
       }
+    } finally {
+      setIsSaving(false);
     }
   };
 
@@ -496,9 +584,9 @@ export function StartupModal({
       <DialogContent
         className={
           step === 2 || step === 3 || step === 4
-            ? "max-w-2xl bg-[#e4e4e4]"
+            ? "max-w-2xl bg-[#e4e4e4] sm:max-w-2xl"
             : step === 1
-            ? "bg-[#e4e4e4]"
+            ? "bg-[#e4e4e4] sm:max-w-lg"
             : ""
         }
       >
@@ -732,6 +820,15 @@ export function StartupModal({
           </div>
         ) : step === 4 ? (
           <form onSubmit={handleStartupDetailsSubmit}>
+            {/* Metrics fetching progress indicator */}
+            {isFetchingMetrics && (
+              <div className="mb-4 p-3 bg-blue-50 border border-blue-200 rounded text-sm">
+                <div className="flex items-center gap-2">
+                  <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-blue-600"></div>
+                  <span className="text-blue-800">{metricsFetchProgress}</span>
+                </div>
+              </div>
+            )}
             <div className=" space-y-4  max-h-[70vh] overflow-y-auto [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
               {/* Founder Name and Handle */}
               <div className="grid grid-cols-2 gap-4 ">
@@ -833,7 +930,8 @@ export function StartupModal({
                           type="text"
                           value={tempStartupName}
                           onChange={(e) => setTempStartupName(e.target.value)}
-                          placeholder="Enter your startup name"
+                          placeholder="Enter your startup name *"
+                          required
                           className="flex-1 px-3 py-2    border border-gray-300 text-xs focus:outline-none"
                           autoFocus
                           onKeyDown={(e) => {
@@ -878,7 +976,7 @@ export function StartupModal({
                         className="flex items-center gap-2   cursor-pointer hover:text-gray-700 transition-colors group"
                       >
                         <span className="flex-1">
-                          {startupName || "Enter your startup name"}
+                          {startupName || "Enter your startup name *"}
                         </span>
                         <PenTool className="w-4 h-4 text-gray-400 group-hover:text-gray-600 rotate-270 transition-colors" />
                       </p>
@@ -890,7 +988,8 @@ export function StartupModal({
                           type="text"
                           value={tempTagline}
                           onChange={(e) => setTempTagline(e.target.value)}
-                          placeholder="Enter your tagline"
+                          placeholder="Enter your tagline *"
+                          required
                           className="flex-1 px-3 py-2    text-muted-foreground border border-gray-300 text-xs focus:outline-none"
                           autoFocus
                           onKeyDown={(e) => {
@@ -935,7 +1034,7 @@ export function StartupModal({
                         className="flex items-center gap-2 text-sm text-gray-500 cursor-pointer hover:text-gray-700 transition-colors group"
                       >
                         <span className="flex-1">
-                          {tagline || "Enter your tagline"}
+                          {tagline || "Enter your tagline *"}
                         </span>
                         <PenTool className="w-4 h-4 text-gray-400 group-hover:text-gray-600 rotate-270 transition-colors" />
                       </p>
@@ -953,13 +1052,14 @@ export function StartupModal({
                     {" "}
                     1.3
                   </span>{" "}
-                  Description
+                  Description <span className="text-red-500">*</span>
                 </label>
                 <textarea
                   id="startup-description"
                   value={description}
                   onChange={(e) => setDescription(e.target.value)}
                   placeholder="Brief description of your startup"
+                  required
                   rows={3}
                   className="w-full px-3 py-4  mt-2 text-black/80 border border-gray-300 text-xs focus:outline-none resize-none"
                 />
@@ -978,7 +1078,7 @@ export function StartupModal({
                 </label>
                 <div className="flex items-center w-full border border-gray-300 overflow-hidden">
                   <span className="px-3 py-2   text-xs border-r border-gray-300 w-32 shrink-0">
-                    Website url:
+                    Website url: <span className="text-red-500">*</span>
                   </span>
                   <input
                     id="website"
@@ -991,6 +1091,7 @@ export function StartupModal({
                       );
                     }}
                     placeholder="[www...]"
+                    required
                     className="flex-1 px-3 py-2 text-black/80 text-xs focus:outline-none"
                   />
                 </div>
@@ -1037,10 +1138,15 @@ export function StartupModal({
                 )}
                 <button
                   type="submit"
-                  className="flex items-center hover:bg-[#e03c26] gap-1.5 bg-[#1A1A1A] text-white text-xs font-medium px-4 py-2  transition-colors shadow-sm"
+                  disabled={isSaving}
+                  className="flex items-center hover:bg-[#e03c26] gap-1.5 bg-[#1A1A1A] text-white text-xs font-medium px-4 py-2 transition-colors shadow-sm disabled:opacity-50 disabled:cursor-not-allowed"
                 >
-                  <Plus className="w-4 h-4" />
-                  <span> Save Startup</span>
+                  {isSaving ? (
+                    <Loader2 className="w-4 h-4 animate-spin" />
+                  ) : (
+                    <Plus className="w-4 h-4" />
+                  )}
+                  <span>{isSaving ? "Saving..." : "Save Startup"}</span>
                 </button>
               </DialogFooter>
             </div>

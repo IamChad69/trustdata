@@ -32,7 +32,7 @@ export function Spotlight({
   if (isEmpty) {
     return (
       <div
-        className={`border border-gray-300 p-6 flex flex-col items-center justify-center relative h-full min-h-[150px] bg-[#f6f6f6]`}
+        className={`border border-dashed border-gray-300 p-6 flex flex-col items-center justify-center relative h-full min-h-[150px]`}
       >
         {/* Top-left black square */}
         <div className="absolute top-2 left-2 w-1.5 h-1.5 bg-black" />

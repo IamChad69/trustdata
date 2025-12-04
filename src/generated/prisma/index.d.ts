@@ -28,6 +28,16 @@ export type MetricSnapshot = $Result.DefaultSelection<Prisma.$MetricSnapshotPayl
  * 
  */
 export type Spotlight = $Result.DefaultSelection<Prisma.$SpotlightPayload>
+/**
+ * Model DbCredential
+ * 
+ */
+export type DbCredential = $Result.DefaultSelection<Prisma.$DbCredentialPayload>
+/**
+ * Model Startup
+ * 
+ */
+export type Startup = $Result.DefaultSelection<Prisma.$StartupPayload>
 
 /**
  * Enums
@@ -200,6 +210,26 @@ export class PrismaClient<
     * ```
     */
   get spotlight(): Prisma.SpotlightDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.dbCredential`: Exposes CRUD operations for the **DbCredential** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more DbCredentials
+    * const dbCredentials = await prisma.dbCredential.findMany()
+    * ```
+    */
+  get dbCredential(): Prisma.DbCredentialDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.startup`: Exposes CRUD operations for the **Startup** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Startups
+    * const startups = await prisma.startup.findMany()
+    * ```
+    */
+  get startup(): Prisma.StartupDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -642,7 +672,9 @@ export namespace Prisma {
   export const ModelName: {
     DatabaseConnection: 'DatabaseConnection',
     MetricSnapshot: 'MetricSnapshot',
-    Spotlight: 'Spotlight'
+    Spotlight: 'Spotlight',
+    DbCredential: 'DbCredential',
+    Startup: 'Startup'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -661,7 +693,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "databaseConnection" | "metricSnapshot" | "spotlight"
+      modelProps: "databaseConnection" | "metricSnapshot" | "spotlight" | "dbCredential" | "startup"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -887,6 +919,154 @@ export namespace Prisma {
           }
         }
       }
+      DbCredential: {
+        payload: Prisma.$DbCredentialPayload<ExtArgs>
+        fields: Prisma.DbCredentialFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.DbCredentialFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DbCredentialPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.DbCredentialFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DbCredentialPayload>
+          }
+          findFirst: {
+            args: Prisma.DbCredentialFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DbCredentialPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.DbCredentialFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DbCredentialPayload>
+          }
+          findMany: {
+            args: Prisma.DbCredentialFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DbCredentialPayload>[]
+          }
+          create: {
+            args: Prisma.DbCredentialCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DbCredentialPayload>
+          }
+          createMany: {
+            args: Prisma.DbCredentialCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.DbCredentialCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DbCredentialPayload>[]
+          }
+          delete: {
+            args: Prisma.DbCredentialDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DbCredentialPayload>
+          }
+          update: {
+            args: Prisma.DbCredentialUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DbCredentialPayload>
+          }
+          deleteMany: {
+            args: Prisma.DbCredentialDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.DbCredentialUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.DbCredentialUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DbCredentialPayload>[]
+          }
+          upsert: {
+            args: Prisma.DbCredentialUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DbCredentialPayload>
+          }
+          aggregate: {
+            args: Prisma.DbCredentialAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateDbCredential>
+          }
+          groupBy: {
+            args: Prisma.DbCredentialGroupByArgs<ExtArgs>
+            result: $Utils.Optional<DbCredentialGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.DbCredentialCountArgs<ExtArgs>
+            result: $Utils.Optional<DbCredentialCountAggregateOutputType> | number
+          }
+        }
+      }
+      Startup: {
+        payload: Prisma.$StartupPayload<ExtArgs>
+        fields: Prisma.StartupFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.StartupFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$StartupPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.StartupFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$StartupPayload>
+          }
+          findFirst: {
+            args: Prisma.StartupFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$StartupPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.StartupFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$StartupPayload>
+          }
+          findMany: {
+            args: Prisma.StartupFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$StartupPayload>[]
+          }
+          create: {
+            args: Prisma.StartupCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$StartupPayload>
+          }
+          createMany: {
+            args: Prisma.StartupCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.StartupCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$StartupPayload>[]
+          }
+          delete: {
+            args: Prisma.StartupDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$StartupPayload>
+          }
+          update: {
+            args: Prisma.StartupUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$StartupPayload>
+          }
+          deleteMany: {
+            args: Prisma.StartupDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.StartupUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.StartupUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$StartupPayload>[]
+          }
+          upsert: {
+            args: Prisma.StartupUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$StartupPayload>
+          }
+          aggregate: {
+            args: Prisma.StartupAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateStartup>
+          }
+          groupBy: {
+            args: Prisma.StartupGroupByArgs<ExtArgs>
+            result: $Utils.Optional<StartupGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.StartupCountArgs<ExtArgs>
+            result: $Utils.Optional<StartupCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -974,6 +1154,8 @@ export namespace Prisma {
     databaseConnection?: DatabaseConnectionOmit
     metricSnapshot?: MetricSnapshotOmit
     spotlight?: SpotlightOmit
+    dbCredential?: DbCredentialOmit
+    startup?: StartupOmit
   }
 
   /* Types for Logging */
@@ -1091,6 +1273,37 @@ export namespace Prisma {
    */
   export type DatabaseConnectionCountOutputTypeCountMetricSnapshotArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: MetricSnapshotWhereInput
+  }
+
+
+  /**
+   * Count Type DbCredentialCountOutputType
+   */
+
+  export type DbCredentialCountOutputType = {
+    Startup: number
+  }
+
+  export type DbCredentialCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    Startup?: boolean | DbCredentialCountOutputTypeCountStartupArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * DbCredentialCountOutputType without action
+   */
+  export type DbCredentialCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DbCredentialCountOutputType
+     */
+    select?: DbCredentialCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * DbCredentialCountOutputType without action
+   */
+  export type DbCredentialCountOutputTypeCountStartupArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: StartupWhereInput
   }
 
 
@@ -4721,6 +4934,2272 @@ export namespace Prisma {
 
 
   /**
+   * Model DbCredential
+   */
+
+  export type AggregateDbCredential = {
+    _count: DbCredentialCountAggregateOutputType | null
+    _avg: DbCredentialAvgAggregateOutputType | null
+    _sum: DbCredentialSumAggregateOutputType | null
+    _min: DbCredentialMinAggregateOutputType | null
+    _max: DbCredentialMaxAggregateOutputType | null
+  }
+
+  export type DbCredentialAvgAggregateOutputType = {
+    port: number | null
+  }
+
+  export type DbCredentialSumAggregateOutputType = {
+    port: number | null
+  }
+
+  export type DbCredentialMinAggregateOutputType = {
+    id: string | null
+    host: string | null
+    port: number | null
+    database: string | null
+    username: string | null
+    password: string | null
+    ssl: boolean | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type DbCredentialMaxAggregateOutputType = {
+    id: string | null
+    host: string | null
+    port: number | null
+    database: string | null
+    username: string | null
+    password: string | null
+    ssl: boolean | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type DbCredentialCountAggregateOutputType = {
+    id: number
+    host: number
+    port: number
+    database: number
+    username: number
+    password: number
+    ssl: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type DbCredentialAvgAggregateInputType = {
+    port?: true
+  }
+
+  export type DbCredentialSumAggregateInputType = {
+    port?: true
+  }
+
+  export type DbCredentialMinAggregateInputType = {
+    id?: true
+    host?: true
+    port?: true
+    database?: true
+    username?: true
+    password?: true
+    ssl?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type DbCredentialMaxAggregateInputType = {
+    id?: true
+    host?: true
+    port?: true
+    database?: true
+    username?: true
+    password?: true
+    ssl?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type DbCredentialCountAggregateInputType = {
+    id?: true
+    host?: true
+    port?: true
+    database?: true
+    username?: true
+    password?: true
+    ssl?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type DbCredentialAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which DbCredential to aggregate.
+     */
+    where?: DbCredentialWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of DbCredentials to fetch.
+     */
+    orderBy?: DbCredentialOrderByWithRelationInput | DbCredentialOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: DbCredentialWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` DbCredentials from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` DbCredentials.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned DbCredentials
+    **/
+    _count?: true | DbCredentialCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: DbCredentialAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: DbCredentialSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: DbCredentialMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: DbCredentialMaxAggregateInputType
+  }
+
+  export type GetDbCredentialAggregateType<T extends DbCredentialAggregateArgs> = {
+        [P in keyof T & keyof AggregateDbCredential]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateDbCredential[P]>
+      : GetScalarType<T[P], AggregateDbCredential[P]>
+  }
+
+
+
+
+  export type DbCredentialGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: DbCredentialWhereInput
+    orderBy?: DbCredentialOrderByWithAggregationInput | DbCredentialOrderByWithAggregationInput[]
+    by: DbCredentialScalarFieldEnum[] | DbCredentialScalarFieldEnum
+    having?: DbCredentialScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: DbCredentialCountAggregateInputType | true
+    _avg?: DbCredentialAvgAggregateInputType
+    _sum?: DbCredentialSumAggregateInputType
+    _min?: DbCredentialMinAggregateInputType
+    _max?: DbCredentialMaxAggregateInputType
+  }
+
+  export type DbCredentialGroupByOutputType = {
+    id: string
+    host: string
+    port: number
+    database: string
+    username: string
+    password: string
+    ssl: boolean
+    createdAt: Date
+    updatedAt: Date
+    _count: DbCredentialCountAggregateOutputType | null
+    _avg: DbCredentialAvgAggregateOutputType | null
+    _sum: DbCredentialSumAggregateOutputType | null
+    _min: DbCredentialMinAggregateOutputType | null
+    _max: DbCredentialMaxAggregateOutputType | null
+  }
+
+  type GetDbCredentialGroupByPayload<T extends DbCredentialGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<DbCredentialGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof DbCredentialGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], DbCredentialGroupByOutputType[P]>
+            : GetScalarType<T[P], DbCredentialGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type DbCredentialSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    host?: boolean
+    port?: boolean
+    database?: boolean
+    username?: boolean
+    password?: boolean
+    ssl?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    Startup?: boolean | DbCredential$StartupArgs<ExtArgs>
+    _count?: boolean | DbCredentialCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["dbCredential"]>
+
+  export type DbCredentialSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    host?: boolean
+    port?: boolean
+    database?: boolean
+    username?: boolean
+    password?: boolean
+    ssl?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["dbCredential"]>
+
+  export type DbCredentialSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    host?: boolean
+    port?: boolean
+    database?: boolean
+    username?: boolean
+    password?: boolean
+    ssl?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["dbCredential"]>
+
+  export type DbCredentialSelectScalar = {
+    id?: boolean
+    host?: boolean
+    port?: boolean
+    database?: boolean
+    username?: boolean
+    password?: boolean
+    ssl?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type DbCredentialOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "host" | "port" | "database" | "username" | "password" | "ssl" | "createdAt" | "updatedAt", ExtArgs["result"]["dbCredential"]>
+  export type DbCredentialInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    Startup?: boolean | DbCredential$StartupArgs<ExtArgs>
+    _count?: boolean | DbCredentialCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type DbCredentialIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+  export type DbCredentialIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+
+  export type $DbCredentialPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "DbCredential"
+    objects: {
+      Startup: Prisma.$StartupPayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      host: string
+      port: number
+      database: string
+      username: string
+      password: string
+      ssl: boolean
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["dbCredential"]>
+    composites: {}
+  }
+
+  type DbCredentialGetPayload<S extends boolean | null | undefined | DbCredentialDefaultArgs> = $Result.GetResult<Prisma.$DbCredentialPayload, S>
+
+  type DbCredentialCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<DbCredentialFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: DbCredentialCountAggregateInputType | true
+    }
+
+  export interface DbCredentialDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['DbCredential'], meta: { name: 'DbCredential' } }
+    /**
+     * Find zero or one DbCredential that matches the filter.
+     * @param {DbCredentialFindUniqueArgs} args - Arguments to find a DbCredential
+     * @example
+     * // Get one DbCredential
+     * const dbCredential = await prisma.dbCredential.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends DbCredentialFindUniqueArgs>(args: SelectSubset<T, DbCredentialFindUniqueArgs<ExtArgs>>): Prisma__DbCredentialClient<$Result.GetResult<Prisma.$DbCredentialPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one DbCredential that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {DbCredentialFindUniqueOrThrowArgs} args - Arguments to find a DbCredential
+     * @example
+     * // Get one DbCredential
+     * const dbCredential = await prisma.dbCredential.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends DbCredentialFindUniqueOrThrowArgs>(args: SelectSubset<T, DbCredentialFindUniqueOrThrowArgs<ExtArgs>>): Prisma__DbCredentialClient<$Result.GetResult<Prisma.$DbCredentialPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first DbCredential that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {DbCredentialFindFirstArgs} args - Arguments to find a DbCredential
+     * @example
+     * // Get one DbCredential
+     * const dbCredential = await prisma.dbCredential.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends DbCredentialFindFirstArgs>(args?: SelectSubset<T, DbCredentialFindFirstArgs<ExtArgs>>): Prisma__DbCredentialClient<$Result.GetResult<Prisma.$DbCredentialPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first DbCredential that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {DbCredentialFindFirstOrThrowArgs} args - Arguments to find a DbCredential
+     * @example
+     * // Get one DbCredential
+     * const dbCredential = await prisma.dbCredential.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends DbCredentialFindFirstOrThrowArgs>(args?: SelectSubset<T, DbCredentialFindFirstOrThrowArgs<ExtArgs>>): Prisma__DbCredentialClient<$Result.GetResult<Prisma.$DbCredentialPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more DbCredentials that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {DbCredentialFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all DbCredentials
+     * const dbCredentials = await prisma.dbCredential.findMany()
+     * 
+     * // Get first 10 DbCredentials
+     * const dbCredentials = await prisma.dbCredential.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const dbCredentialWithIdOnly = await prisma.dbCredential.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends DbCredentialFindManyArgs>(args?: SelectSubset<T, DbCredentialFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$DbCredentialPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a DbCredential.
+     * @param {DbCredentialCreateArgs} args - Arguments to create a DbCredential.
+     * @example
+     * // Create one DbCredential
+     * const DbCredential = await prisma.dbCredential.create({
+     *   data: {
+     *     // ... data to create a DbCredential
+     *   }
+     * })
+     * 
+     */
+    create<T extends DbCredentialCreateArgs>(args: SelectSubset<T, DbCredentialCreateArgs<ExtArgs>>): Prisma__DbCredentialClient<$Result.GetResult<Prisma.$DbCredentialPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many DbCredentials.
+     * @param {DbCredentialCreateManyArgs} args - Arguments to create many DbCredentials.
+     * @example
+     * // Create many DbCredentials
+     * const dbCredential = await prisma.dbCredential.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends DbCredentialCreateManyArgs>(args?: SelectSubset<T, DbCredentialCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many DbCredentials and returns the data saved in the database.
+     * @param {DbCredentialCreateManyAndReturnArgs} args - Arguments to create many DbCredentials.
+     * @example
+     * // Create many DbCredentials
+     * const dbCredential = await prisma.dbCredential.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many DbCredentials and only return the `id`
+     * const dbCredentialWithIdOnly = await prisma.dbCredential.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends DbCredentialCreateManyAndReturnArgs>(args?: SelectSubset<T, DbCredentialCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$DbCredentialPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a DbCredential.
+     * @param {DbCredentialDeleteArgs} args - Arguments to delete one DbCredential.
+     * @example
+     * // Delete one DbCredential
+     * const DbCredential = await prisma.dbCredential.delete({
+     *   where: {
+     *     // ... filter to delete one DbCredential
+     *   }
+     * })
+     * 
+     */
+    delete<T extends DbCredentialDeleteArgs>(args: SelectSubset<T, DbCredentialDeleteArgs<ExtArgs>>): Prisma__DbCredentialClient<$Result.GetResult<Prisma.$DbCredentialPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one DbCredential.
+     * @param {DbCredentialUpdateArgs} args - Arguments to update one DbCredential.
+     * @example
+     * // Update one DbCredential
+     * const dbCredential = await prisma.dbCredential.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends DbCredentialUpdateArgs>(args: SelectSubset<T, DbCredentialUpdateArgs<ExtArgs>>): Prisma__DbCredentialClient<$Result.GetResult<Prisma.$DbCredentialPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more DbCredentials.
+     * @param {DbCredentialDeleteManyArgs} args - Arguments to filter DbCredentials to delete.
+     * @example
+     * // Delete a few DbCredentials
+     * const { count } = await prisma.dbCredential.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends DbCredentialDeleteManyArgs>(args?: SelectSubset<T, DbCredentialDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more DbCredentials.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {DbCredentialUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many DbCredentials
+     * const dbCredential = await prisma.dbCredential.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends DbCredentialUpdateManyArgs>(args: SelectSubset<T, DbCredentialUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more DbCredentials and returns the data updated in the database.
+     * @param {DbCredentialUpdateManyAndReturnArgs} args - Arguments to update many DbCredentials.
+     * @example
+     * // Update many DbCredentials
+     * const dbCredential = await prisma.dbCredential.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more DbCredentials and only return the `id`
+     * const dbCredentialWithIdOnly = await prisma.dbCredential.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends DbCredentialUpdateManyAndReturnArgs>(args: SelectSubset<T, DbCredentialUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$DbCredentialPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one DbCredential.
+     * @param {DbCredentialUpsertArgs} args - Arguments to update or create a DbCredential.
+     * @example
+     * // Update or create a DbCredential
+     * const dbCredential = await prisma.dbCredential.upsert({
+     *   create: {
+     *     // ... data to create a DbCredential
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the DbCredential we want to update
+     *   }
+     * })
+     */
+    upsert<T extends DbCredentialUpsertArgs>(args: SelectSubset<T, DbCredentialUpsertArgs<ExtArgs>>): Prisma__DbCredentialClient<$Result.GetResult<Prisma.$DbCredentialPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of DbCredentials.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {DbCredentialCountArgs} args - Arguments to filter DbCredentials to count.
+     * @example
+     * // Count the number of DbCredentials
+     * const count = await prisma.dbCredential.count({
+     *   where: {
+     *     // ... the filter for the DbCredentials we want to count
+     *   }
+     * })
+    **/
+    count<T extends DbCredentialCountArgs>(
+      args?: Subset<T, DbCredentialCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], DbCredentialCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a DbCredential.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {DbCredentialAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends DbCredentialAggregateArgs>(args: Subset<T, DbCredentialAggregateArgs>): Prisma.PrismaPromise<GetDbCredentialAggregateType<T>>
+
+    /**
+     * Group by DbCredential.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {DbCredentialGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends DbCredentialGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: DbCredentialGroupByArgs['orderBy'] }
+        : { orderBy?: DbCredentialGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, DbCredentialGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetDbCredentialGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the DbCredential model
+   */
+  readonly fields: DbCredentialFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for DbCredential.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__DbCredentialClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    Startup<T extends DbCredential$StartupArgs<ExtArgs> = {}>(args?: Subset<T, DbCredential$StartupArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$StartupPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the DbCredential model
+   */
+  interface DbCredentialFieldRefs {
+    readonly id: FieldRef<"DbCredential", 'String'>
+    readonly host: FieldRef<"DbCredential", 'String'>
+    readonly port: FieldRef<"DbCredential", 'Int'>
+    readonly database: FieldRef<"DbCredential", 'String'>
+    readonly username: FieldRef<"DbCredential", 'String'>
+    readonly password: FieldRef<"DbCredential", 'String'>
+    readonly ssl: FieldRef<"DbCredential", 'Boolean'>
+    readonly createdAt: FieldRef<"DbCredential", 'DateTime'>
+    readonly updatedAt: FieldRef<"DbCredential", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * DbCredential findUnique
+   */
+  export type DbCredentialFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DbCredential
+     */
+    select?: DbCredentialSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DbCredential
+     */
+    omit?: DbCredentialOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DbCredentialInclude<ExtArgs> | null
+    /**
+     * Filter, which DbCredential to fetch.
+     */
+    where: DbCredentialWhereUniqueInput
+  }
+
+  /**
+   * DbCredential findUniqueOrThrow
+   */
+  export type DbCredentialFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DbCredential
+     */
+    select?: DbCredentialSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DbCredential
+     */
+    omit?: DbCredentialOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DbCredentialInclude<ExtArgs> | null
+    /**
+     * Filter, which DbCredential to fetch.
+     */
+    where: DbCredentialWhereUniqueInput
+  }
+
+  /**
+   * DbCredential findFirst
+   */
+  export type DbCredentialFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DbCredential
+     */
+    select?: DbCredentialSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DbCredential
+     */
+    omit?: DbCredentialOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DbCredentialInclude<ExtArgs> | null
+    /**
+     * Filter, which DbCredential to fetch.
+     */
+    where?: DbCredentialWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of DbCredentials to fetch.
+     */
+    orderBy?: DbCredentialOrderByWithRelationInput | DbCredentialOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for DbCredentials.
+     */
+    cursor?: DbCredentialWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` DbCredentials from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` DbCredentials.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of DbCredentials.
+     */
+    distinct?: DbCredentialScalarFieldEnum | DbCredentialScalarFieldEnum[]
+  }
+
+  /**
+   * DbCredential findFirstOrThrow
+   */
+  export type DbCredentialFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DbCredential
+     */
+    select?: DbCredentialSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DbCredential
+     */
+    omit?: DbCredentialOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DbCredentialInclude<ExtArgs> | null
+    /**
+     * Filter, which DbCredential to fetch.
+     */
+    where?: DbCredentialWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of DbCredentials to fetch.
+     */
+    orderBy?: DbCredentialOrderByWithRelationInput | DbCredentialOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for DbCredentials.
+     */
+    cursor?: DbCredentialWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` DbCredentials from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` DbCredentials.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of DbCredentials.
+     */
+    distinct?: DbCredentialScalarFieldEnum | DbCredentialScalarFieldEnum[]
+  }
+
+  /**
+   * DbCredential findMany
+   */
+  export type DbCredentialFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DbCredential
+     */
+    select?: DbCredentialSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DbCredential
+     */
+    omit?: DbCredentialOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DbCredentialInclude<ExtArgs> | null
+    /**
+     * Filter, which DbCredentials to fetch.
+     */
+    where?: DbCredentialWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of DbCredentials to fetch.
+     */
+    orderBy?: DbCredentialOrderByWithRelationInput | DbCredentialOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing DbCredentials.
+     */
+    cursor?: DbCredentialWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` DbCredentials from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` DbCredentials.
+     */
+    skip?: number
+    distinct?: DbCredentialScalarFieldEnum | DbCredentialScalarFieldEnum[]
+  }
+
+  /**
+   * DbCredential create
+   */
+  export type DbCredentialCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DbCredential
+     */
+    select?: DbCredentialSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DbCredential
+     */
+    omit?: DbCredentialOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DbCredentialInclude<ExtArgs> | null
+    /**
+     * The data needed to create a DbCredential.
+     */
+    data: XOR<DbCredentialCreateInput, DbCredentialUncheckedCreateInput>
+  }
+
+  /**
+   * DbCredential createMany
+   */
+  export type DbCredentialCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many DbCredentials.
+     */
+    data: DbCredentialCreateManyInput | DbCredentialCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * DbCredential createManyAndReturn
+   */
+  export type DbCredentialCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DbCredential
+     */
+    select?: DbCredentialSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the DbCredential
+     */
+    omit?: DbCredentialOmit<ExtArgs> | null
+    /**
+     * The data used to create many DbCredentials.
+     */
+    data: DbCredentialCreateManyInput | DbCredentialCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * DbCredential update
+   */
+  export type DbCredentialUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DbCredential
+     */
+    select?: DbCredentialSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DbCredential
+     */
+    omit?: DbCredentialOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DbCredentialInclude<ExtArgs> | null
+    /**
+     * The data needed to update a DbCredential.
+     */
+    data: XOR<DbCredentialUpdateInput, DbCredentialUncheckedUpdateInput>
+    /**
+     * Choose, which DbCredential to update.
+     */
+    where: DbCredentialWhereUniqueInput
+  }
+
+  /**
+   * DbCredential updateMany
+   */
+  export type DbCredentialUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update DbCredentials.
+     */
+    data: XOR<DbCredentialUpdateManyMutationInput, DbCredentialUncheckedUpdateManyInput>
+    /**
+     * Filter which DbCredentials to update
+     */
+    where?: DbCredentialWhereInput
+    /**
+     * Limit how many DbCredentials to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * DbCredential updateManyAndReturn
+   */
+  export type DbCredentialUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DbCredential
+     */
+    select?: DbCredentialSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the DbCredential
+     */
+    omit?: DbCredentialOmit<ExtArgs> | null
+    /**
+     * The data used to update DbCredentials.
+     */
+    data: XOR<DbCredentialUpdateManyMutationInput, DbCredentialUncheckedUpdateManyInput>
+    /**
+     * Filter which DbCredentials to update
+     */
+    where?: DbCredentialWhereInput
+    /**
+     * Limit how many DbCredentials to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * DbCredential upsert
+   */
+  export type DbCredentialUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DbCredential
+     */
+    select?: DbCredentialSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DbCredential
+     */
+    omit?: DbCredentialOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DbCredentialInclude<ExtArgs> | null
+    /**
+     * The filter to search for the DbCredential to update in case it exists.
+     */
+    where: DbCredentialWhereUniqueInput
+    /**
+     * In case the DbCredential found by the `where` argument doesn't exist, create a new DbCredential with this data.
+     */
+    create: XOR<DbCredentialCreateInput, DbCredentialUncheckedCreateInput>
+    /**
+     * In case the DbCredential was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<DbCredentialUpdateInput, DbCredentialUncheckedUpdateInput>
+  }
+
+  /**
+   * DbCredential delete
+   */
+  export type DbCredentialDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DbCredential
+     */
+    select?: DbCredentialSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DbCredential
+     */
+    omit?: DbCredentialOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DbCredentialInclude<ExtArgs> | null
+    /**
+     * Filter which DbCredential to delete.
+     */
+    where: DbCredentialWhereUniqueInput
+  }
+
+  /**
+   * DbCredential deleteMany
+   */
+  export type DbCredentialDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which DbCredentials to delete
+     */
+    where?: DbCredentialWhereInput
+    /**
+     * Limit how many DbCredentials to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * DbCredential.Startup
+   */
+  export type DbCredential$StartupArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Startup
+     */
+    select?: StartupSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Startup
+     */
+    omit?: StartupOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: StartupInclude<ExtArgs> | null
+    where?: StartupWhereInput
+    orderBy?: StartupOrderByWithRelationInput | StartupOrderByWithRelationInput[]
+    cursor?: StartupWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: StartupScalarFieldEnum | StartupScalarFieldEnum[]
+  }
+
+  /**
+   * DbCredential without action
+   */
+  export type DbCredentialDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DbCredential
+     */
+    select?: DbCredentialSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DbCredential
+     */
+    omit?: DbCredentialOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DbCredentialInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model Startup
+   */
+
+  export type AggregateStartup = {
+    _count: StartupCountAggregateOutputType | null
+    _min: StartupMinAggregateOutputType | null
+    _max: StartupMaxAggregateOutputType | null
+  }
+
+  export type StartupMinAggregateOutputType = {
+    id: string | null
+    name: string | null
+    slug: string | null
+    description: string | null
+    logoUrl: string | null
+    provider: string | null
+    credentialsId: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type StartupMaxAggregateOutputType = {
+    id: string | null
+    name: string | null
+    slug: string | null
+    description: string | null
+    logoUrl: string | null
+    provider: string | null
+    credentialsId: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type StartupCountAggregateOutputType = {
+    id: number
+    name: number
+    slug: number
+    description: number
+    logoUrl: number
+    provider: number
+    credentialsId: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type StartupMinAggregateInputType = {
+    id?: true
+    name?: true
+    slug?: true
+    description?: true
+    logoUrl?: true
+    provider?: true
+    credentialsId?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type StartupMaxAggregateInputType = {
+    id?: true
+    name?: true
+    slug?: true
+    description?: true
+    logoUrl?: true
+    provider?: true
+    credentialsId?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type StartupCountAggregateInputType = {
+    id?: true
+    name?: true
+    slug?: true
+    description?: true
+    logoUrl?: true
+    provider?: true
+    credentialsId?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type StartupAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Startup to aggregate.
+     */
+    where?: StartupWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Startups to fetch.
+     */
+    orderBy?: StartupOrderByWithRelationInput | StartupOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: StartupWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Startups from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Startups.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned Startups
+    **/
+    _count?: true | StartupCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: StartupMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: StartupMaxAggregateInputType
+  }
+
+  export type GetStartupAggregateType<T extends StartupAggregateArgs> = {
+        [P in keyof T & keyof AggregateStartup]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateStartup[P]>
+      : GetScalarType<T[P], AggregateStartup[P]>
+  }
+
+
+
+
+  export type StartupGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: StartupWhereInput
+    orderBy?: StartupOrderByWithAggregationInput | StartupOrderByWithAggregationInput[]
+    by: StartupScalarFieldEnum[] | StartupScalarFieldEnum
+    having?: StartupScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: StartupCountAggregateInputType | true
+    _min?: StartupMinAggregateInputType
+    _max?: StartupMaxAggregateInputType
+  }
+
+  export type StartupGroupByOutputType = {
+    id: string
+    name: string
+    slug: string
+    description: string | null
+    logoUrl: string | null
+    provider: string
+    credentialsId: string
+    createdAt: Date
+    updatedAt: Date
+    _count: StartupCountAggregateOutputType | null
+    _min: StartupMinAggregateOutputType | null
+    _max: StartupMaxAggregateOutputType | null
+  }
+
+  type GetStartupGroupByPayload<T extends StartupGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<StartupGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof StartupGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], StartupGroupByOutputType[P]>
+            : GetScalarType<T[P], StartupGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type StartupSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+    slug?: boolean
+    description?: boolean
+    logoUrl?: boolean
+    provider?: boolean
+    credentialsId?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    DbCredential?: boolean | DbCredentialDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["startup"]>
+
+  export type StartupSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+    slug?: boolean
+    description?: boolean
+    logoUrl?: boolean
+    provider?: boolean
+    credentialsId?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    DbCredential?: boolean | DbCredentialDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["startup"]>
+
+  export type StartupSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+    slug?: boolean
+    description?: boolean
+    logoUrl?: boolean
+    provider?: boolean
+    credentialsId?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    DbCredential?: boolean | DbCredentialDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["startup"]>
+
+  export type StartupSelectScalar = {
+    id?: boolean
+    name?: boolean
+    slug?: boolean
+    description?: boolean
+    logoUrl?: boolean
+    provider?: boolean
+    credentialsId?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type StartupOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "slug" | "description" | "logoUrl" | "provider" | "credentialsId" | "createdAt" | "updatedAt", ExtArgs["result"]["startup"]>
+  export type StartupInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    DbCredential?: boolean | DbCredentialDefaultArgs<ExtArgs>
+  }
+  export type StartupIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    DbCredential?: boolean | DbCredentialDefaultArgs<ExtArgs>
+  }
+  export type StartupIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    DbCredential?: boolean | DbCredentialDefaultArgs<ExtArgs>
+  }
+
+  export type $StartupPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Startup"
+    objects: {
+      DbCredential: Prisma.$DbCredentialPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      name: string
+      slug: string
+      description: string | null
+      logoUrl: string | null
+      provider: string
+      credentialsId: string
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["startup"]>
+    composites: {}
+  }
+
+  type StartupGetPayload<S extends boolean | null | undefined | StartupDefaultArgs> = $Result.GetResult<Prisma.$StartupPayload, S>
+
+  type StartupCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<StartupFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: StartupCountAggregateInputType | true
+    }
+
+  export interface StartupDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Startup'], meta: { name: 'Startup' } }
+    /**
+     * Find zero or one Startup that matches the filter.
+     * @param {StartupFindUniqueArgs} args - Arguments to find a Startup
+     * @example
+     * // Get one Startup
+     * const startup = await prisma.startup.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends StartupFindUniqueArgs>(args: SelectSubset<T, StartupFindUniqueArgs<ExtArgs>>): Prisma__StartupClient<$Result.GetResult<Prisma.$StartupPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Startup that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {StartupFindUniqueOrThrowArgs} args - Arguments to find a Startup
+     * @example
+     * // Get one Startup
+     * const startup = await prisma.startup.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends StartupFindUniqueOrThrowArgs>(args: SelectSubset<T, StartupFindUniqueOrThrowArgs<ExtArgs>>): Prisma__StartupClient<$Result.GetResult<Prisma.$StartupPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Startup that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {StartupFindFirstArgs} args - Arguments to find a Startup
+     * @example
+     * // Get one Startup
+     * const startup = await prisma.startup.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends StartupFindFirstArgs>(args?: SelectSubset<T, StartupFindFirstArgs<ExtArgs>>): Prisma__StartupClient<$Result.GetResult<Prisma.$StartupPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Startup that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {StartupFindFirstOrThrowArgs} args - Arguments to find a Startup
+     * @example
+     * // Get one Startup
+     * const startup = await prisma.startup.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends StartupFindFirstOrThrowArgs>(args?: SelectSubset<T, StartupFindFirstOrThrowArgs<ExtArgs>>): Prisma__StartupClient<$Result.GetResult<Prisma.$StartupPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Startups that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {StartupFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Startups
+     * const startups = await prisma.startup.findMany()
+     * 
+     * // Get first 10 Startups
+     * const startups = await prisma.startup.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const startupWithIdOnly = await prisma.startup.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends StartupFindManyArgs>(args?: SelectSubset<T, StartupFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$StartupPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Startup.
+     * @param {StartupCreateArgs} args - Arguments to create a Startup.
+     * @example
+     * // Create one Startup
+     * const Startup = await prisma.startup.create({
+     *   data: {
+     *     // ... data to create a Startup
+     *   }
+     * })
+     * 
+     */
+    create<T extends StartupCreateArgs>(args: SelectSubset<T, StartupCreateArgs<ExtArgs>>): Prisma__StartupClient<$Result.GetResult<Prisma.$StartupPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Startups.
+     * @param {StartupCreateManyArgs} args - Arguments to create many Startups.
+     * @example
+     * // Create many Startups
+     * const startup = await prisma.startup.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends StartupCreateManyArgs>(args?: SelectSubset<T, StartupCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many Startups and returns the data saved in the database.
+     * @param {StartupCreateManyAndReturnArgs} args - Arguments to create many Startups.
+     * @example
+     * // Create many Startups
+     * const startup = await prisma.startup.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many Startups and only return the `id`
+     * const startupWithIdOnly = await prisma.startup.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends StartupCreateManyAndReturnArgs>(args?: SelectSubset<T, StartupCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$StartupPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a Startup.
+     * @param {StartupDeleteArgs} args - Arguments to delete one Startup.
+     * @example
+     * // Delete one Startup
+     * const Startup = await prisma.startup.delete({
+     *   where: {
+     *     // ... filter to delete one Startup
+     *   }
+     * })
+     * 
+     */
+    delete<T extends StartupDeleteArgs>(args: SelectSubset<T, StartupDeleteArgs<ExtArgs>>): Prisma__StartupClient<$Result.GetResult<Prisma.$StartupPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Startup.
+     * @param {StartupUpdateArgs} args - Arguments to update one Startup.
+     * @example
+     * // Update one Startup
+     * const startup = await prisma.startup.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends StartupUpdateArgs>(args: SelectSubset<T, StartupUpdateArgs<ExtArgs>>): Prisma__StartupClient<$Result.GetResult<Prisma.$StartupPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Startups.
+     * @param {StartupDeleteManyArgs} args - Arguments to filter Startups to delete.
+     * @example
+     * // Delete a few Startups
+     * const { count } = await prisma.startup.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends StartupDeleteManyArgs>(args?: SelectSubset<T, StartupDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Startups.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {StartupUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Startups
+     * const startup = await prisma.startup.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends StartupUpdateManyArgs>(args: SelectSubset<T, StartupUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Startups and returns the data updated in the database.
+     * @param {StartupUpdateManyAndReturnArgs} args - Arguments to update many Startups.
+     * @example
+     * // Update many Startups
+     * const startup = await prisma.startup.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more Startups and only return the `id`
+     * const startupWithIdOnly = await prisma.startup.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends StartupUpdateManyAndReturnArgs>(args: SelectSubset<T, StartupUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$StartupPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one Startup.
+     * @param {StartupUpsertArgs} args - Arguments to update or create a Startup.
+     * @example
+     * // Update or create a Startup
+     * const startup = await prisma.startup.upsert({
+     *   create: {
+     *     // ... data to create a Startup
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Startup we want to update
+     *   }
+     * })
+     */
+    upsert<T extends StartupUpsertArgs>(args: SelectSubset<T, StartupUpsertArgs<ExtArgs>>): Prisma__StartupClient<$Result.GetResult<Prisma.$StartupPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Startups.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {StartupCountArgs} args - Arguments to filter Startups to count.
+     * @example
+     * // Count the number of Startups
+     * const count = await prisma.startup.count({
+     *   where: {
+     *     // ... the filter for the Startups we want to count
+     *   }
+     * })
+    **/
+    count<T extends StartupCountArgs>(
+      args?: Subset<T, StartupCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], StartupCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Startup.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {StartupAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends StartupAggregateArgs>(args: Subset<T, StartupAggregateArgs>): Prisma.PrismaPromise<GetStartupAggregateType<T>>
+
+    /**
+     * Group by Startup.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {StartupGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends StartupGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: StartupGroupByArgs['orderBy'] }
+        : { orderBy?: StartupGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, StartupGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetStartupGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the Startup model
+   */
+  readonly fields: StartupFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for Startup.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__StartupClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    DbCredential<T extends DbCredentialDefaultArgs<ExtArgs> = {}>(args?: Subset<T, DbCredentialDefaultArgs<ExtArgs>>): Prisma__DbCredentialClient<$Result.GetResult<Prisma.$DbCredentialPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the Startup model
+   */
+  interface StartupFieldRefs {
+    readonly id: FieldRef<"Startup", 'String'>
+    readonly name: FieldRef<"Startup", 'String'>
+    readonly slug: FieldRef<"Startup", 'String'>
+    readonly description: FieldRef<"Startup", 'String'>
+    readonly logoUrl: FieldRef<"Startup", 'String'>
+    readonly provider: FieldRef<"Startup", 'String'>
+    readonly credentialsId: FieldRef<"Startup", 'String'>
+    readonly createdAt: FieldRef<"Startup", 'DateTime'>
+    readonly updatedAt: FieldRef<"Startup", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * Startup findUnique
+   */
+  export type StartupFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Startup
+     */
+    select?: StartupSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Startup
+     */
+    omit?: StartupOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: StartupInclude<ExtArgs> | null
+    /**
+     * Filter, which Startup to fetch.
+     */
+    where: StartupWhereUniqueInput
+  }
+
+  /**
+   * Startup findUniqueOrThrow
+   */
+  export type StartupFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Startup
+     */
+    select?: StartupSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Startup
+     */
+    omit?: StartupOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: StartupInclude<ExtArgs> | null
+    /**
+     * Filter, which Startup to fetch.
+     */
+    where: StartupWhereUniqueInput
+  }
+
+  /**
+   * Startup findFirst
+   */
+  export type StartupFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Startup
+     */
+    select?: StartupSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Startup
+     */
+    omit?: StartupOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: StartupInclude<ExtArgs> | null
+    /**
+     * Filter, which Startup to fetch.
+     */
+    where?: StartupWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Startups to fetch.
+     */
+    orderBy?: StartupOrderByWithRelationInput | StartupOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Startups.
+     */
+    cursor?: StartupWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Startups from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Startups.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Startups.
+     */
+    distinct?: StartupScalarFieldEnum | StartupScalarFieldEnum[]
+  }
+
+  /**
+   * Startup findFirstOrThrow
+   */
+  export type StartupFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Startup
+     */
+    select?: StartupSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Startup
+     */
+    omit?: StartupOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: StartupInclude<ExtArgs> | null
+    /**
+     * Filter, which Startup to fetch.
+     */
+    where?: StartupWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Startups to fetch.
+     */
+    orderBy?: StartupOrderByWithRelationInput | StartupOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Startups.
+     */
+    cursor?: StartupWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Startups from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Startups.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Startups.
+     */
+    distinct?: StartupScalarFieldEnum | StartupScalarFieldEnum[]
+  }
+
+  /**
+   * Startup findMany
+   */
+  export type StartupFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Startup
+     */
+    select?: StartupSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Startup
+     */
+    omit?: StartupOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: StartupInclude<ExtArgs> | null
+    /**
+     * Filter, which Startups to fetch.
+     */
+    where?: StartupWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Startups to fetch.
+     */
+    orderBy?: StartupOrderByWithRelationInput | StartupOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing Startups.
+     */
+    cursor?: StartupWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Startups from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Startups.
+     */
+    skip?: number
+    distinct?: StartupScalarFieldEnum | StartupScalarFieldEnum[]
+  }
+
+  /**
+   * Startup create
+   */
+  export type StartupCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Startup
+     */
+    select?: StartupSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Startup
+     */
+    omit?: StartupOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: StartupInclude<ExtArgs> | null
+    /**
+     * The data needed to create a Startup.
+     */
+    data: XOR<StartupCreateInput, StartupUncheckedCreateInput>
+  }
+
+  /**
+   * Startup createMany
+   */
+  export type StartupCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many Startups.
+     */
+    data: StartupCreateManyInput | StartupCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * Startup createManyAndReturn
+   */
+  export type StartupCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Startup
+     */
+    select?: StartupSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Startup
+     */
+    omit?: StartupOmit<ExtArgs> | null
+    /**
+     * The data used to create many Startups.
+     */
+    data: StartupCreateManyInput | StartupCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: StartupIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * Startup update
+   */
+  export type StartupUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Startup
+     */
+    select?: StartupSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Startup
+     */
+    omit?: StartupOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: StartupInclude<ExtArgs> | null
+    /**
+     * The data needed to update a Startup.
+     */
+    data: XOR<StartupUpdateInput, StartupUncheckedUpdateInput>
+    /**
+     * Choose, which Startup to update.
+     */
+    where: StartupWhereUniqueInput
+  }
+
+  /**
+   * Startup updateMany
+   */
+  export type StartupUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update Startups.
+     */
+    data: XOR<StartupUpdateManyMutationInput, StartupUncheckedUpdateManyInput>
+    /**
+     * Filter which Startups to update
+     */
+    where?: StartupWhereInput
+    /**
+     * Limit how many Startups to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * Startup updateManyAndReturn
+   */
+  export type StartupUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Startup
+     */
+    select?: StartupSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Startup
+     */
+    omit?: StartupOmit<ExtArgs> | null
+    /**
+     * The data used to update Startups.
+     */
+    data: XOR<StartupUpdateManyMutationInput, StartupUncheckedUpdateManyInput>
+    /**
+     * Filter which Startups to update
+     */
+    where?: StartupWhereInput
+    /**
+     * Limit how many Startups to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: StartupIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * Startup upsert
+   */
+  export type StartupUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Startup
+     */
+    select?: StartupSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Startup
+     */
+    omit?: StartupOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: StartupInclude<ExtArgs> | null
+    /**
+     * The filter to search for the Startup to update in case it exists.
+     */
+    where: StartupWhereUniqueInput
+    /**
+     * In case the Startup found by the `where` argument doesn't exist, create a new Startup with this data.
+     */
+    create: XOR<StartupCreateInput, StartupUncheckedCreateInput>
+    /**
+     * In case the Startup was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<StartupUpdateInput, StartupUncheckedUpdateInput>
+  }
+
+  /**
+   * Startup delete
+   */
+  export type StartupDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Startup
+     */
+    select?: StartupSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Startup
+     */
+    omit?: StartupOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: StartupInclude<ExtArgs> | null
+    /**
+     * Filter which Startup to delete.
+     */
+    where: StartupWhereUniqueInput
+  }
+
+  /**
+   * Startup deleteMany
+   */
+  export type StartupDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Startups to delete
+     */
+    where?: StartupWhereInput
+    /**
+     * Limit how many Startups to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * Startup without action
+   */
+  export type StartupDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Startup
+     */
+    select?: StartupSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Startup
+     */
+    omit?: StartupOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: StartupInclude<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
@@ -4794,6 +7273,36 @@ export namespace Prisma {
   };
 
   export type SpotlightScalarFieldEnum = (typeof SpotlightScalarFieldEnum)[keyof typeof SpotlightScalarFieldEnum]
+
+
+  export const DbCredentialScalarFieldEnum: {
+    id: 'id',
+    host: 'host',
+    port: 'port',
+    database: 'database',
+    username: 'username',
+    password: 'password',
+    ssl: 'ssl',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type DbCredentialScalarFieldEnum = (typeof DbCredentialScalarFieldEnum)[keyof typeof DbCredentialScalarFieldEnum]
+
+
+  export const StartupScalarFieldEnum: {
+    id: 'id',
+    name: 'name',
+    slug: 'slug',
+    description: 'description',
+    logoUrl: 'logoUrl',
+    provider: 'provider',
+    credentialsId: 'credentialsId',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type StartupScalarFieldEnum = (typeof StartupScalarFieldEnum)[keyof typeof StartupScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -5205,6 +7714,158 @@ export namespace Prisma {
     updatedAt?: DateTimeWithAggregatesFilter<"Spotlight"> | Date | string
   }
 
+  export type DbCredentialWhereInput = {
+    AND?: DbCredentialWhereInput | DbCredentialWhereInput[]
+    OR?: DbCredentialWhereInput[]
+    NOT?: DbCredentialWhereInput | DbCredentialWhereInput[]
+    id?: StringFilter<"DbCredential"> | string
+    host?: StringFilter<"DbCredential"> | string
+    port?: IntFilter<"DbCredential"> | number
+    database?: StringFilter<"DbCredential"> | string
+    username?: StringFilter<"DbCredential"> | string
+    password?: StringFilter<"DbCredential"> | string
+    ssl?: BoolFilter<"DbCredential"> | boolean
+    createdAt?: DateTimeFilter<"DbCredential"> | Date | string
+    updatedAt?: DateTimeFilter<"DbCredential"> | Date | string
+    Startup?: StartupListRelationFilter
+  }
+
+  export type DbCredentialOrderByWithRelationInput = {
+    id?: SortOrder
+    host?: SortOrder
+    port?: SortOrder
+    database?: SortOrder
+    username?: SortOrder
+    password?: SortOrder
+    ssl?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    Startup?: StartupOrderByRelationAggregateInput
+  }
+
+  export type DbCredentialWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: DbCredentialWhereInput | DbCredentialWhereInput[]
+    OR?: DbCredentialWhereInput[]
+    NOT?: DbCredentialWhereInput | DbCredentialWhereInput[]
+    host?: StringFilter<"DbCredential"> | string
+    port?: IntFilter<"DbCredential"> | number
+    database?: StringFilter<"DbCredential"> | string
+    username?: StringFilter<"DbCredential"> | string
+    password?: StringFilter<"DbCredential"> | string
+    ssl?: BoolFilter<"DbCredential"> | boolean
+    createdAt?: DateTimeFilter<"DbCredential"> | Date | string
+    updatedAt?: DateTimeFilter<"DbCredential"> | Date | string
+    Startup?: StartupListRelationFilter
+  }, "id">
+
+  export type DbCredentialOrderByWithAggregationInput = {
+    id?: SortOrder
+    host?: SortOrder
+    port?: SortOrder
+    database?: SortOrder
+    username?: SortOrder
+    password?: SortOrder
+    ssl?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: DbCredentialCountOrderByAggregateInput
+    _avg?: DbCredentialAvgOrderByAggregateInput
+    _max?: DbCredentialMaxOrderByAggregateInput
+    _min?: DbCredentialMinOrderByAggregateInput
+    _sum?: DbCredentialSumOrderByAggregateInput
+  }
+
+  export type DbCredentialScalarWhereWithAggregatesInput = {
+    AND?: DbCredentialScalarWhereWithAggregatesInput | DbCredentialScalarWhereWithAggregatesInput[]
+    OR?: DbCredentialScalarWhereWithAggregatesInput[]
+    NOT?: DbCredentialScalarWhereWithAggregatesInput | DbCredentialScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"DbCredential"> | string
+    host?: StringWithAggregatesFilter<"DbCredential"> | string
+    port?: IntWithAggregatesFilter<"DbCredential"> | number
+    database?: StringWithAggregatesFilter<"DbCredential"> | string
+    username?: StringWithAggregatesFilter<"DbCredential"> | string
+    password?: StringWithAggregatesFilter<"DbCredential"> | string
+    ssl?: BoolWithAggregatesFilter<"DbCredential"> | boolean
+    createdAt?: DateTimeWithAggregatesFilter<"DbCredential"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"DbCredential"> | Date | string
+  }
+
+  export type StartupWhereInput = {
+    AND?: StartupWhereInput | StartupWhereInput[]
+    OR?: StartupWhereInput[]
+    NOT?: StartupWhereInput | StartupWhereInput[]
+    id?: StringFilter<"Startup"> | string
+    name?: StringFilter<"Startup"> | string
+    slug?: StringFilter<"Startup"> | string
+    description?: StringNullableFilter<"Startup"> | string | null
+    logoUrl?: StringNullableFilter<"Startup"> | string | null
+    provider?: StringFilter<"Startup"> | string
+    credentialsId?: StringFilter<"Startup"> | string
+    createdAt?: DateTimeFilter<"Startup"> | Date | string
+    updatedAt?: DateTimeFilter<"Startup"> | Date | string
+    DbCredential?: XOR<DbCredentialScalarRelationFilter, DbCredentialWhereInput>
+  }
+
+  export type StartupOrderByWithRelationInput = {
+    id?: SortOrder
+    name?: SortOrder
+    slug?: SortOrder
+    description?: SortOrderInput | SortOrder
+    logoUrl?: SortOrderInput | SortOrder
+    provider?: SortOrder
+    credentialsId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    DbCredential?: DbCredentialOrderByWithRelationInput
+  }
+
+  export type StartupWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    slug?: string
+    AND?: StartupWhereInput | StartupWhereInput[]
+    OR?: StartupWhereInput[]
+    NOT?: StartupWhereInput | StartupWhereInput[]
+    name?: StringFilter<"Startup"> | string
+    description?: StringNullableFilter<"Startup"> | string | null
+    logoUrl?: StringNullableFilter<"Startup"> | string | null
+    provider?: StringFilter<"Startup"> | string
+    credentialsId?: StringFilter<"Startup"> | string
+    createdAt?: DateTimeFilter<"Startup"> | Date | string
+    updatedAt?: DateTimeFilter<"Startup"> | Date | string
+    DbCredential?: XOR<DbCredentialScalarRelationFilter, DbCredentialWhereInput>
+  }, "id" | "slug">
+
+  export type StartupOrderByWithAggregationInput = {
+    id?: SortOrder
+    name?: SortOrder
+    slug?: SortOrder
+    description?: SortOrderInput | SortOrder
+    logoUrl?: SortOrderInput | SortOrder
+    provider?: SortOrder
+    credentialsId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: StartupCountOrderByAggregateInput
+    _max?: StartupMaxOrderByAggregateInput
+    _min?: StartupMinOrderByAggregateInput
+  }
+
+  export type StartupScalarWhereWithAggregatesInput = {
+    AND?: StartupScalarWhereWithAggregatesInput | StartupScalarWhereWithAggregatesInput[]
+    OR?: StartupScalarWhereWithAggregatesInput[]
+    NOT?: StartupScalarWhereWithAggregatesInput | StartupScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"Startup"> | string
+    name?: StringWithAggregatesFilter<"Startup"> | string
+    slug?: StringWithAggregatesFilter<"Startup"> | string
+    description?: StringNullableWithAggregatesFilter<"Startup"> | string | null
+    logoUrl?: StringNullableWithAggregatesFilter<"Startup"> | string | null
+    provider?: StringWithAggregatesFilter<"Startup"> | string
+    credentialsId?: StringWithAggregatesFilter<"Startup"> | string
+    createdAt?: DateTimeWithAggregatesFilter<"Startup"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"Startup"> | Date | string
+  }
+
   export type DatabaseConnectionCreateInput = {
     id: string
     name: string
@@ -5575,6 +8236,177 @@ export namespace Prisma {
     stripeSessionId?: NullableStringFieldUpdateOperationsInput | string | null
     paymentAmount?: NullableIntFieldUpdateOperationsInput | number | null
     paidAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type DbCredentialCreateInput = {
+    id: string
+    host: string
+    port: number
+    database: string
+    username: string
+    password: string
+    ssl?: boolean
+    createdAt?: Date | string
+    updatedAt: Date | string
+    Startup?: StartupCreateNestedManyWithoutDbCredentialInput
+  }
+
+  export type DbCredentialUncheckedCreateInput = {
+    id: string
+    host: string
+    port: number
+    database: string
+    username: string
+    password: string
+    ssl?: boolean
+    createdAt?: Date | string
+    updatedAt: Date | string
+    Startup?: StartupUncheckedCreateNestedManyWithoutDbCredentialInput
+  }
+
+  export type DbCredentialUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    host?: StringFieldUpdateOperationsInput | string
+    port?: IntFieldUpdateOperationsInput | number
+    database?: StringFieldUpdateOperationsInput | string
+    username?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    ssl?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    Startup?: StartupUpdateManyWithoutDbCredentialNestedInput
+  }
+
+  export type DbCredentialUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    host?: StringFieldUpdateOperationsInput | string
+    port?: IntFieldUpdateOperationsInput | number
+    database?: StringFieldUpdateOperationsInput | string
+    username?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    ssl?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    Startup?: StartupUncheckedUpdateManyWithoutDbCredentialNestedInput
+  }
+
+  export type DbCredentialCreateManyInput = {
+    id: string
+    host: string
+    port: number
+    database: string
+    username: string
+    password: string
+    ssl?: boolean
+    createdAt?: Date | string
+    updatedAt: Date | string
+  }
+
+  export type DbCredentialUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    host?: StringFieldUpdateOperationsInput | string
+    port?: IntFieldUpdateOperationsInput | number
+    database?: StringFieldUpdateOperationsInput | string
+    username?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    ssl?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type DbCredentialUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    host?: StringFieldUpdateOperationsInput | string
+    port?: IntFieldUpdateOperationsInput | number
+    database?: StringFieldUpdateOperationsInput | string
+    username?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    ssl?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type StartupCreateInput = {
+    id: string
+    name: string
+    slug: string
+    description?: string | null
+    logoUrl?: string | null
+    provider: string
+    createdAt?: Date | string
+    updatedAt: Date | string
+    DbCredential: DbCredentialCreateNestedOneWithoutStartupInput
+  }
+
+  export type StartupUncheckedCreateInput = {
+    id: string
+    name: string
+    slug: string
+    description?: string | null
+    logoUrl?: string | null
+    provider: string
+    credentialsId: string
+    createdAt?: Date | string
+    updatedAt: Date | string
+  }
+
+  export type StartupUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    logoUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    provider?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    DbCredential?: DbCredentialUpdateOneRequiredWithoutStartupNestedInput
+  }
+
+  export type StartupUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    logoUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    provider?: StringFieldUpdateOperationsInput | string
+    credentialsId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type StartupCreateManyInput = {
+    id: string
+    name: string
+    slug: string
+    description?: string | null
+    logoUrl?: string | null
+    provider: string
+    credentialsId: string
+    createdAt?: Date | string
+    updatedAt: Date | string
+  }
+
+  export type StartupUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    logoUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    provider?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type StartupUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    logoUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    provider?: StringFieldUpdateOperationsInput | string
+    credentialsId?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -5988,6 +8820,101 @@ export namespace Prisma {
     _max?: NestedDateTimeNullableFilter<$PrismaModel>
   }
 
+  export type StartupListRelationFilter = {
+    every?: StartupWhereInput
+    some?: StartupWhereInput
+    none?: StartupWhereInput
+  }
+
+  export type StartupOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type DbCredentialCountOrderByAggregateInput = {
+    id?: SortOrder
+    host?: SortOrder
+    port?: SortOrder
+    database?: SortOrder
+    username?: SortOrder
+    password?: SortOrder
+    ssl?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type DbCredentialAvgOrderByAggregateInput = {
+    port?: SortOrder
+  }
+
+  export type DbCredentialMaxOrderByAggregateInput = {
+    id?: SortOrder
+    host?: SortOrder
+    port?: SortOrder
+    database?: SortOrder
+    username?: SortOrder
+    password?: SortOrder
+    ssl?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type DbCredentialMinOrderByAggregateInput = {
+    id?: SortOrder
+    host?: SortOrder
+    port?: SortOrder
+    database?: SortOrder
+    username?: SortOrder
+    password?: SortOrder
+    ssl?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type DbCredentialSumOrderByAggregateInput = {
+    port?: SortOrder
+  }
+
+  export type DbCredentialScalarRelationFilter = {
+    is?: DbCredentialWhereInput
+    isNot?: DbCredentialWhereInput
+  }
+
+  export type StartupCountOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    slug?: SortOrder
+    description?: SortOrder
+    logoUrl?: SortOrder
+    provider?: SortOrder
+    credentialsId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type StartupMaxOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    slug?: SortOrder
+    description?: SortOrder
+    logoUrl?: SortOrder
+    provider?: SortOrder
+    credentialsId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type StartupMinOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    slug?: SortOrder
+    description?: SortOrder
+    logoUrl?: SortOrder
+    provider?: SortOrder
+    credentialsId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
   export type DatabaseConnectionCreateselectedTablesInput = {
     set: string[]
   }
@@ -6087,6 +9014,62 @@ export namespace Prisma {
 
   export type NullableDateTimeFieldUpdateOperationsInput = {
     set?: Date | string | null
+  }
+
+  export type StartupCreateNestedManyWithoutDbCredentialInput = {
+    create?: XOR<StartupCreateWithoutDbCredentialInput, StartupUncheckedCreateWithoutDbCredentialInput> | StartupCreateWithoutDbCredentialInput[] | StartupUncheckedCreateWithoutDbCredentialInput[]
+    connectOrCreate?: StartupCreateOrConnectWithoutDbCredentialInput | StartupCreateOrConnectWithoutDbCredentialInput[]
+    createMany?: StartupCreateManyDbCredentialInputEnvelope
+    connect?: StartupWhereUniqueInput | StartupWhereUniqueInput[]
+  }
+
+  export type StartupUncheckedCreateNestedManyWithoutDbCredentialInput = {
+    create?: XOR<StartupCreateWithoutDbCredentialInput, StartupUncheckedCreateWithoutDbCredentialInput> | StartupCreateWithoutDbCredentialInput[] | StartupUncheckedCreateWithoutDbCredentialInput[]
+    connectOrCreate?: StartupCreateOrConnectWithoutDbCredentialInput | StartupCreateOrConnectWithoutDbCredentialInput[]
+    createMany?: StartupCreateManyDbCredentialInputEnvelope
+    connect?: StartupWhereUniqueInput | StartupWhereUniqueInput[]
+  }
+
+  export type StartupUpdateManyWithoutDbCredentialNestedInput = {
+    create?: XOR<StartupCreateWithoutDbCredentialInput, StartupUncheckedCreateWithoutDbCredentialInput> | StartupCreateWithoutDbCredentialInput[] | StartupUncheckedCreateWithoutDbCredentialInput[]
+    connectOrCreate?: StartupCreateOrConnectWithoutDbCredentialInput | StartupCreateOrConnectWithoutDbCredentialInput[]
+    upsert?: StartupUpsertWithWhereUniqueWithoutDbCredentialInput | StartupUpsertWithWhereUniqueWithoutDbCredentialInput[]
+    createMany?: StartupCreateManyDbCredentialInputEnvelope
+    set?: StartupWhereUniqueInput | StartupWhereUniqueInput[]
+    disconnect?: StartupWhereUniqueInput | StartupWhereUniqueInput[]
+    delete?: StartupWhereUniqueInput | StartupWhereUniqueInput[]
+    connect?: StartupWhereUniqueInput | StartupWhereUniqueInput[]
+    update?: StartupUpdateWithWhereUniqueWithoutDbCredentialInput | StartupUpdateWithWhereUniqueWithoutDbCredentialInput[]
+    updateMany?: StartupUpdateManyWithWhereWithoutDbCredentialInput | StartupUpdateManyWithWhereWithoutDbCredentialInput[]
+    deleteMany?: StartupScalarWhereInput | StartupScalarWhereInput[]
+  }
+
+  export type StartupUncheckedUpdateManyWithoutDbCredentialNestedInput = {
+    create?: XOR<StartupCreateWithoutDbCredentialInput, StartupUncheckedCreateWithoutDbCredentialInput> | StartupCreateWithoutDbCredentialInput[] | StartupUncheckedCreateWithoutDbCredentialInput[]
+    connectOrCreate?: StartupCreateOrConnectWithoutDbCredentialInput | StartupCreateOrConnectWithoutDbCredentialInput[]
+    upsert?: StartupUpsertWithWhereUniqueWithoutDbCredentialInput | StartupUpsertWithWhereUniqueWithoutDbCredentialInput[]
+    createMany?: StartupCreateManyDbCredentialInputEnvelope
+    set?: StartupWhereUniqueInput | StartupWhereUniqueInput[]
+    disconnect?: StartupWhereUniqueInput | StartupWhereUniqueInput[]
+    delete?: StartupWhereUniqueInput | StartupWhereUniqueInput[]
+    connect?: StartupWhereUniqueInput | StartupWhereUniqueInput[]
+    update?: StartupUpdateWithWhereUniqueWithoutDbCredentialInput | StartupUpdateWithWhereUniqueWithoutDbCredentialInput[]
+    updateMany?: StartupUpdateManyWithWhereWithoutDbCredentialInput | StartupUpdateManyWithWhereWithoutDbCredentialInput[]
+    deleteMany?: StartupScalarWhereInput | StartupScalarWhereInput[]
+  }
+
+  export type DbCredentialCreateNestedOneWithoutStartupInput = {
+    create?: XOR<DbCredentialCreateWithoutStartupInput, DbCredentialUncheckedCreateWithoutStartupInput>
+    connectOrCreate?: DbCredentialCreateOrConnectWithoutStartupInput
+    connect?: DbCredentialWhereUniqueInput
+  }
+
+  export type DbCredentialUpdateOneRequiredWithoutStartupNestedInput = {
+    create?: XOR<DbCredentialCreateWithoutStartupInput, DbCredentialUncheckedCreateWithoutStartupInput>
+    connectOrCreate?: DbCredentialCreateOrConnectWithoutStartupInput
+    upsert?: DbCredentialUpsertWithoutStartupInput
+    connect?: DbCredentialWhereUniqueInput
+    update?: XOR<XOR<DbCredentialUpdateToOneWithWhereWithoutStartupInput, DbCredentialUpdateWithoutStartupInput>, DbCredentialUncheckedUpdateWithoutStartupInput>
   }
 
   export type NestedStringFilter<$PrismaModel = never> = {
@@ -6465,6 +9448,133 @@ export namespace Prisma {
     readOnlyRoleName?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
+  export type StartupCreateWithoutDbCredentialInput = {
+    id: string
+    name: string
+    slug: string
+    description?: string | null
+    logoUrl?: string | null
+    provider: string
+    createdAt?: Date | string
+    updatedAt: Date | string
+  }
+
+  export type StartupUncheckedCreateWithoutDbCredentialInput = {
+    id: string
+    name: string
+    slug: string
+    description?: string | null
+    logoUrl?: string | null
+    provider: string
+    createdAt?: Date | string
+    updatedAt: Date | string
+  }
+
+  export type StartupCreateOrConnectWithoutDbCredentialInput = {
+    where: StartupWhereUniqueInput
+    create: XOR<StartupCreateWithoutDbCredentialInput, StartupUncheckedCreateWithoutDbCredentialInput>
+  }
+
+  export type StartupCreateManyDbCredentialInputEnvelope = {
+    data: StartupCreateManyDbCredentialInput | StartupCreateManyDbCredentialInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type StartupUpsertWithWhereUniqueWithoutDbCredentialInput = {
+    where: StartupWhereUniqueInput
+    update: XOR<StartupUpdateWithoutDbCredentialInput, StartupUncheckedUpdateWithoutDbCredentialInput>
+    create: XOR<StartupCreateWithoutDbCredentialInput, StartupUncheckedCreateWithoutDbCredentialInput>
+  }
+
+  export type StartupUpdateWithWhereUniqueWithoutDbCredentialInput = {
+    where: StartupWhereUniqueInput
+    data: XOR<StartupUpdateWithoutDbCredentialInput, StartupUncheckedUpdateWithoutDbCredentialInput>
+  }
+
+  export type StartupUpdateManyWithWhereWithoutDbCredentialInput = {
+    where: StartupScalarWhereInput
+    data: XOR<StartupUpdateManyMutationInput, StartupUncheckedUpdateManyWithoutDbCredentialInput>
+  }
+
+  export type StartupScalarWhereInput = {
+    AND?: StartupScalarWhereInput | StartupScalarWhereInput[]
+    OR?: StartupScalarWhereInput[]
+    NOT?: StartupScalarWhereInput | StartupScalarWhereInput[]
+    id?: StringFilter<"Startup"> | string
+    name?: StringFilter<"Startup"> | string
+    slug?: StringFilter<"Startup"> | string
+    description?: StringNullableFilter<"Startup"> | string | null
+    logoUrl?: StringNullableFilter<"Startup"> | string | null
+    provider?: StringFilter<"Startup"> | string
+    credentialsId?: StringFilter<"Startup"> | string
+    createdAt?: DateTimeFilter<"Startup"> | Date | string
+    updatedAt?: DateTimeFilter<"Startup"> | Date | string
+  }
+
+  export type DbCredentialCreateWithoutStartupInput = {
+    id: string
+    host: string
+    port: number
+    database: string
+    username: string
+    password: string
+    ssl?: boolean
+    createdAt?: Date | string
+    updatedAt: Date | string
+  }
+
+  export type DbCredentialUncheckedCreateWithoutStartupInput = {
+    id: string
+    host: string
+    port: number
+    database: string
+    username: string
+    password: string
+    ssl?: boolean
+    createdAt?: Date | string
+    updatedAt: Date | string
+  }
+
+  export type DbCredentialCreateOrConnectWithoutStartupInput = {
+    where: DbCredentialWhereUniqueInput
+    create: XOR<DbCredentialCreateWithoutStartupInput, DbCredentialUncheckedCreateWithoutStartupInput>
+  }
+
+  export type DbCredentialUpsertWithoutStartupInput = {
+    update: XOR<DbCredentialUpdateWithoutStartupInput, DbCredentialUncheckedUpdateWithoutStartupInput>
+    create: XOR<DbCredentialCreateWithoutStartupInput, DbCredentialUncheckedCreateWithoutStartupInput>
+    where?: DbCredentialWhereInput
+  }
+
+  export type DbCredentialUpdateToOneWithWhereWithoutStartupInput = {
+    where?: DbCredentialWhereInput
+    data: XOR<DbCredentialUpdateWithoutStartupInput, DbCredentialUncheckedUpdateWithoutStartupInput>
+  }
+
+  export type DbCredentialUpdateWithoutStartupInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    host?: StringFieldUpdateOperationsInput | string
+    port?: IntFieldUpdateOperationsInput | number
+    database?: StringFieldUpdateOperationsInput | string
+    username?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    ssl?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type DbCredentialUncheckedUpdateWithoutStartupInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    host?: StringFieldUpdateOperationsInput | string
+    port?: IntFieldUpdateOperationsInput | number
+    database?: StringFieldUpdateOperationsInput | string
+    username?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    ssl?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type MetricSnapshotCreateManyDatabaseConnectionInput = {
     id: string
     date: Date | string
@@ -6507,6 +9617,50 @@ export namespace Prisma {
     newSignups?: IntFieldUpdateOperationsInput | number
     churnedUsers?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type StartupCreateManyDbCredentialInput = {
+    id: string
+    name: string
+    slug: string
+    description?: string | null
+    logoUrl?: string | null
+    provider: string
+    createdAt?: Date | string
+    updatedAt: Date | string
+  }
+
+  export type StartupUpdateWithoutDbCredentialInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    logoUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    provider?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type StartupUncheckedUpdateWithoutDbCredentialInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    logoUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    provider?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type StartupUncheckedUpdateManyWithoutDbCredentialInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    logoUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    provider?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
 

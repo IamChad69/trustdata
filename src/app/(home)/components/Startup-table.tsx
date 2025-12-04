@@ -2,7 +2,7 @@
 
 import React from "react";
 import { useRouter } from "next/navigation";
-import { ArrowUp, ArrowDown } from "lucide-react";
+import { ArrowUp, ArrowDown, ArrowRight, TrendingUp } from "lucide-react";
 import {
   Table,
   TableBody,
@@ -91,10 +91,143 @@ export const StartupTable = ({ startups }: StartupTableProps) => {
     router.push(`/startup/${encodeURIComponent(startupName)}`);
   };
 
+  const formatConversionRate = (value: number | null | undefined): string => {
+    if (value === null || value === undefined) return "—";
+    return `${value.toFixed(2)}%`;
+  };
+
   return (
-    <div className="mt-8">
-      <div className="border border-gray-300 overflow-hidden ">
-        <Table>
+    <div className="mt-4 sm:mt-8">
+      {/* Mobile Card View - Small Screens Only */}
+      <div className="md:hidden space-y-3">
+        {startups.length === 0 ? (
+          <div className="text-center py-8 text-muted-foreground bg-[#f3f4f6] border border-gray-300 rounded">
+            No startups found
+          </div>
+        ) : (
+          startups.map((startup, index) => {
+            const initials = getInitials(startup.name);
+            const growthTrend = getGrowthTrend(startup.monthlyGrowthRate);
+
+            return (
+              <div
+                key={startup.id || index}
+                onClick={() => handleRowClick(startup.name)}
+                className="relative bg-[#f3f4f6] border border-gray-300 rounded cursor-pointer hover:bg-gray-200 transition-colors"
+              >
+                {/* Category Badge */}
+                {startup.category && (
+                  <div className="absolute top-0 left-0 border-b border-r border-gray-300 bg-white px-2 py-1 text-[10px] font-medium text-gray-900 uppercase rounded-tl">
+                    {startup.category}
+                  </div>
+                )}
+
+                {/* Top Section: Logo, Name, Tagline */}
+                <div className="p-6 pb-4">
+                  <div className="flex items-center gap-4">
+                    <Avatar className="w-14 h-14 object-cover shrink-0">
+                      {startup.logo ? (
+                        <AvatarImage src={startup.logo} alt={startup.name} />
+                      ) : null}
+                      <AvatarFallback className="text-white bg-black font-bold text-lg">
+                        {initials}
+                      </AvatarFallback>
+                    </Avatar>
+                    <div className="min-w-0 flex-1">
+                      <h3 className="font-bold text-lg text-gray-900 truncate">
+                        {startup.name}
+                      </h3>
+                      <p className="text-sm text-gray-600 truncate mt-1">
+                        {startup.tagline || "—"}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Bottom Section: Metrics Grid + Visit Button */}
+                <div className="relative flex border-t border-gray-300">
+                  {/* Metrics Grid - 2x2 */}
+                  <div className="flex-[2] grid grid-cols-2 max-w-[calc(100%-80px)]">
+                    {/* Top Left: Total Users */}
+                    <div className="flex flex-col px-3 py-2.5 border-r border-b border-gray-300">
+                      <span className="text-base font-bold text-gray-900">
+                        {formatNumber(startup.totalUsers)}
+                      </span>
+                      <span className="text-[10px] text-gray-600 mt-0.5">
+                        Total Users
+                      </span>
+                    </div>
+
+                    {/* Top Right: New Signups */}
+                    <div className="flex flex-col px-3 py-2.5 border-b border-gray-300">
+                      <span className="text-base font-bold text-gray-900">
+                        {formatNumber(startup.newSignups30d)}
+                      </span>
+                      <span className="text-[10px] text-gray-600 mt-0.5">
+                        New Signups (30d)
+                      </span>
+                    </div>
+
+                    {/* Bottom Left: Growth */}
+                    <div className="flex flex-col px-3 py-2.5 border-r border-gray-300">
+                      <div className="flex items-center gap-1">
+                        <span
+                          className={`text-base font-bold ${
+                            startup.monthlyGrowthRate !== null &&
+                            startup.monthlyGrowthRate !== undefined &&
+                            startup.monthlyGrowthRate >= 0
+                              ? "text-red-600"
+                              : "text-gray-900"
+                          }`}
+                        >
+                          {formatPercentage(startup.monthlyGrowthRate)}
+                        </span>
+                        {growthTrend && growthTrend.icon === ArrowUp && (
+                          <TrendingUp className="w-3 h-3 text-red-600" />
+                        )}
+                      </div>
+                      <span className="text-[10px] text-gray-600 mt-0.5">
+                        Growth
+                      </span>
+                    </div>
+
+                    {/* Bottom Right: Conversion */}
+                    <div className="flex flex-col px-3 py-2.5">
+                      <span className="text-base font-bold text-gray-900">
+                        {formatConversionRate(startup.conversionRate)}
+                      </span>
+                      <span className="text-[10px] text-gray-600 mt-0.5">
+                        Conversion
+                      </span>
+                    </div>
+                  </div>
+
+                  {/* Visit Button - Vertical */}
+                  <button
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      handleRowClick(startup.name);
+                    }}
+                    className="flex flex-col items-center justify-center w-20 shrink-0 bg-black text-white hover:bg-gray-800 transition-colors py-2"
+                  >
+                    <ArrowRight className="w-5 h-5 mb-2" />
+                    <span
+                      className="text-[11px] font-bold uppercase"
+                      style={{ writingMode: "vertical-rl" }}
+                    >
+                      Visit
+                    </span>
+                  </button>
+                </div>
+              </div>
+            );
+          })
+        )}
+      </div>
+
+      {/* Desktop Table View - Medium Screens and Up */}
+      <div className="hidden md:block border border-gray-300 overflow-x-auto [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
+        <Table className="min-w-[640px]">
           <TableHeader>
             <TableRow className="border-b border-gray-300 bg-[#f3f4f6] hover:bg-[#f3f4f6]">
               <TableHead className="bg-transparent  uppercase text-[12px]">

@@ -81,7 +81,7 @@ export function EmbedBadgeModal({
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="max-w-2xl bg-[#e4e4e4]">
+      <DialogContent className="max-w-2xl bg-[#e4e4e4] sm:max-w-2xl">
         <DialogHeader>
           <DialogTitle className="text-sm mt-4 font-mono text-foreground mb-2">
             Embed your verified users badge

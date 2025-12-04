@@ -5,6 +5,7 @@ import "./globals.css";
 import { TRPCReactProvider } from "@/trpc/client";
 import { Toaster } from "@/components/ui/sonner";
 import { SpotlightSection } from "@/app/components/spotlight-section";
+import { MobileSpotlightCarousel } from "@/app/components/mobile-spotlight-carousel";
 import { Footer } from "@/app/(home)/components/footer";
 import { prisma } from "@/lib/db";
 
@@ -111,17 +112,19 @@ export default async function RootLayout({
     <html
       lang="en"
       suppressHydrationWarning
-      className="h-screen overflow-hidden"
+      className="h-screen lg:overflow-hidden"
     >
       <body
-        className={`${orbitron.variable} ${robotoMono.variable} ${shadowsIntoLight.variable} font-roboto-mono antialiased bg-[#e4e4e4] h-screen overflow-hidden`}
+        className={`${orbitron.variable} ${robotoMono.variable} ${shadowsIntoLight.variable} font-roboto-mono antialiased bg-[#e4e4e4] h-screen lg:overflow-hidden`}
         suppressHydrationWarning
       >
         <TRPCReactProvider>
           <Toaster />
-          <div className="grid grid-cols-1 lg:grid-cols-[3fr_14fr_3fr] gap-6 h-screen w-full pl-6 pr-6 box-border">
+          {/* Mobile Spotlight Carousel - visible only on small screens */}
+          <MobileSpotlightCarousel spotlights={transformedSpotlights} />
+          <div className="grid grid-cols-1 lg:grid-cols-[3fr_14fr_3fr] gap-0 lg:gap-6 h-screen lg:h-screen w-full box-border">
             {/* Left Spotlight Section */}
-            <aside className="hidden lg:flex flex-col h-full pt-6 min-w-0">
+            <aside className="hidden lg:flex flex-col h-full pt-6 min-w-0 lg:px-4">
               <SpotlightSection
                 spotlights={transformedSpotlights}
                 showAdvertise={false}
@@ -130,13 +133,13 @@ export default async function RootLayout({
             </aside>
 
             {/* Main Content */}
-            <main className="h-full  overflow-y-auto min-w-0 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] flex flex-col">
+            <main className="h-full overflow-y-auto min-w-0 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] flex flex-col px-4 sm:px-6 lg:px-0">
               <div className="flex-1">{children}</div>
               <Footer />
             </main>
 
             {/* Right Spotlight Section */}
-            <aside className="hidden lg:flex flex-col h-full pt-6 min-w-0">
+            <aside className="hidden lg:flex flex-col h-full pt-6 min-w-0 lg:px-4">
               <SpotlightSection
                 spotlights={transformedSpotlights}
                 showAdvertise={true}

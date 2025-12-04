@@ -98,7 +98,7 @@ export function SearchSection() {
 
   return (
     <>
-      <div className="flex items-center  w-full max-w-lg">
+      <div className="flex flex-col sm:flex-row items-stretch sm:items-center w-full gap-2 sm:gap-0">
         <div ref={searchContainerRef} className="relative flex-1">
           <div className="flex w-full items-center gap-2 bg-[#f6f6f6]  border border-gray-300 transition-all focus-within:shadow-md focus-within:border-blue-500/50 focus-within:ring-4 focus-within:ring-blue-500/10">
             <div className="pl-3 text-gray-400">
@@ -188,10 +188,11 @@ export function SearchSection() {
         </div>
         <button
           onClick={() => setIsModalOpen(true)}
-          className="flex items-center h-12 gap-1.5 bg-[#e03d26] text-white text-sm font-medium px-4 py-2  hover:bg-black transition-colors shadow-sm"
+          className="flex items-center justify-center h-12 gap-1.5 bg-[#e03d26] text-white text-sm font-medium px-4 py-2 hover:bg-black transition-colors shadow-sm whitespace-nowrap"
         >
           <Plus className="w-5 h-4" />
-          <span>Add startup</span>
+          <span className="hidden sm:inline">Add startup</span>
+          <span className="sm:hidden">Add</span>
         </button>
       </div>
       <StartupModal open={isModalOpen} onOpenChange={setIsModalOpen} />

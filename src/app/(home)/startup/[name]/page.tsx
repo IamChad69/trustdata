@@ -35,11 +35,11 @@ export default async function StartupPage({ params }: StartupPageProps) {
   }
 
   return (
-    <main className="min-h-screen  ">
-      <div className="relative z-10 mx-auto px-4 sm:px-6 lg:px-8 pb-24">
-        <div className="mt-8  mx-auto">
+    <main className="min-h-screen">
+      <div className="relative z-10 mx-auto px-4 sm:px-6 lg:px-8 pb-12 sm:pb-24">
+        <div className="mt-4 sm:mt-8 mx-auto max-w-7xl">
           {/* Back Button */}
-          <div className="flex items-center justify-between mb-6">
+          <div className="flex items-center justify-between mb-4 sm:mb-6">
             <Link
               href="/"
               className="inline-flex border p-2 border-gray-300 items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors"
@@ -57,8 +57,8 @@ export default async function StartupPage({ params }: StartupPageProps) {
           </div>
 
           {/* Startup Header */}
-          <div className=" border border-gray-300 overflow-hidden bg-[#f6f6f6] relative corner-brackets-all">
-            <div className="flex items-stretch h-full">
+          <div className="border border-gray-300 overflow-hidden bg-[#f6f6f6] relative corner-brackets-all">
+            <div className="flex flex-col sm:flex-row items-stretch h-full">
               <StartupHeader startup={startup} />
 
               <StatsSection
@@ -75,10 +75,10 @@ export default async function StartupPage({ params }: StartupPageProps) {
           </div>
 
           {/* Growth Graph */}
-          <div className="mt-6">
+          <div className="mt-4 sm:mt-6">
             <MetricGraph connectionId={startup.id} />
           </div>
-          <div className="mt-6 items-center justify-center gap-2 flex">
+          <div className="mt-4 sm:mt-6 items-center justify-center gap-2 flex flex-col sm:flex-row text-center sm:text-left">
             <span className="inline-flex    text-sm font-medium  whitespace-nowrap shrink-0 ">
               <div className="flex items-center bg-[#949496] p-1 justify-center">
                 <Image

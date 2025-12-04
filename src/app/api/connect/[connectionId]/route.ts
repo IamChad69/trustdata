@@ -13,6 +13,8 @@ interface UpdateStartupDetailsRequest {
 	founderName?: string;
 	founderHandle?: string;
 	founderAvatar?: string;
+	totalUsers?: number | null;
+	paidUsers?: number | null;
 }
 
 /**
@@ -130,6 +132,9 @@ export async function PATCH(
 				founderName: body.founderName !== undefined ? body.founderName || null : connectionExists.founderName,
 				founderHandle: body.founderHandle !== undefined ? body.founderHandle || null : connectionExists.founderHandle,
 				founderAvatar: body.founderAvatar !== undefined ? body.founderAvatar || null : connectionExists.founderAvatar,
+				// Include metrics if provided (from background fetch)
+				totalUsers: body.totalUsers !== undefined ? body.totalUsers : connectionExists.totalUsers,
+				paidUsers: body.paidUsers !== undefined ? body.paidUsers : connectionExists.paidUsers,
 				updatedAt: new Date(),
 			},
 		});

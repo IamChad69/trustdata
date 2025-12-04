@@ -4,6 +4,8 @@ generator client {
   binaryTargets = ["native", "rhel-openssl-3.0.x"]
 }
 
+// Prisma 6 format - url in datasource is correct for Prisma 6.x
+// This warning is a false positive from Prisma 7-aware language server
 datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
@@ -68,6 +70,38 @@ model Spotlight {
 
   @@index([position])
   @@index([isActive, expiresAt])
+}
+
+model DbCredential {
+  id        String    @id
+  host      String
+  port      Int
+  database  String
+  username  String
+  password  String
+  ssl       Boolean   @default(false)
+  createdAt DateTime  @default(now())
+  updatedAt DateTime
+  Startup   Startup[]
+
+  @@map("DbCredential")
+}
+
+model Startup {
+  id            String       @id
+  name          String
+  slug          String       @unique
+  description   String?
+  logoUrl       String?
+  provider      String
+  credentialsId String
+  createdAt     DateTime     @default(now())
+  updatedAt     DateTime
+  DbCredential  DbCredential @relation(fields: [credentialsId], references: [id], onDelete: Cascade)
+
+  @@index([slug])
+  @@index([credentialsId])
+  @@map("Startup")
 }
 
 enum MessageType {

@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { Loader2 } from "lucide-react";
 import {
   Dialog,
   DialogContent,
@@ -102,7 +103,7 @@ export function SpotlightModal({ open, onOpenChange }: SpotlightModalProps) {
 
   return (
     <Dialog open={open} onOpenChange={handleOpenChange}>
-      <DialogContent className="max-w-2xl bg-[#e4e4e4]">
+      <DialogContent className="max-w-2xl bg-[#e4e4e4] sm:max-w-2xl">
         <DialogHeader>
           <div className="flex items-center gap-3">
             <div className="flex-1">
@@ -192,13 +193,12 @@ export function SpotlightModal({ open, onOpenChange }: SpotlightModalProps) {
               className="flex items-center gap-1.5 bg-[#1A1A1A] text-white text-xs font-medium px-4 py-2 hover:bg-[#e03d26] transition-colors shadow-sm disabled:opacity-50 disabled:cursor-not-allowed"
             >
               {isLoadingPayment ? (
-                "Processing..."
-              ) : (
                 <>
-                  <span>
-                    Lock spot {isFull ? `for ${nextAvailable}` : "now"}
-                  </span>
+                  <Loader2 className="w-4 h-4 animate-spin" />
+                  <span>Processing...</span>
                 </>
+              ) : (
+                <span>Lock spot {isFull ? `for ${nextAvailable}` : "now"}</span>
               )}
             </button>
           </DialogFooter>

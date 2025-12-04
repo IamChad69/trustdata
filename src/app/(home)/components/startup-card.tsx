@@ -80,7 +80,7 @@ export function StartupCard({
             <h3 className="font-bold font-mono text-lg truncate w-full">
               {startup.name}
             </h3>
-            <p className="text-xs text-muted-foreground whitespace-nowrap">
+            <p className="text-sm text-muted-foreground whitespace-nowrap">
               {startup.tagline}
             </p>
           </div>
@@ -89,68 +89,9 @@ export function StartupCard({
 
       {/* Metrics Grid Section */}
       <div className="relative flex-shrink-0">
-        {/* Small screen: 3 metrics vertical layout */}
-        <div className="md:hidden flex border-t border-gray-300">
-          <div className="flex-1 min-w-0">
-            {/* Metric 1: Total Users */}
-            <div className="flex items-center justify-between px-3 border-b border-gray-300">
-              <span className="text-base font-bold">
-                {formatNumber(startup.totalUsers)}
-              </span>
-              <span className="text-xs text-muted-foreground font-mono">
-                Total Users
-              </span>
-            </div>
-            {/* Metric 2: Growth */}
-            <div className="flex items-center justify-between p-3 border-b border-gray-300">
-              <div className="flex items-center gap-1.5">
-                <span
-                  className={`text-base font-bold ${
-                    startup.monthlyGrowthRate !== null &&
-                    startup.monthlyGrowthRate !== undefined &&
-                    startup.monthlyGrowthRate >= 0
-                      ? "text-[#e03d26]"
-                      : "text-gray-500"
-                  }`}
-                >
-                  {formatPercentage(startup.monthlyGrowthRate)}
-                </span>
-                {growthTrend && (
-                  <growthTrend.icon
-                    className={`w-3.5 h-3.5 ${growthTrend.color}`}
-                    aria-label={growthTrend.label}
-                  />
-                )}
-              </div>
-              <span className="text-xs text-muted-foreground font-mono">
-                Growth
-              </span>
-            </div>
-            {/* Metric 3: Conversion */}
-            <div className="flex items-center justify-between p-3">
-              <span className="text-base font-bold">
-                {formatConversionRate(startup.conversionRate)}
-              </span>
-              <span className="text-xs text-muted-foreground font-mono">
-                Conversion
-              </span>
-            </div>
-          </div>
-          {/* Navigation Arrow */}
-          {!disableNavigation && (
-            <Link
-              href={startupLink}
-              className="flex flex-col items-center justify-center w-16 shrink-0 border-l border-gray-300 bg-black text-white hover:bg-[#e03d26] transition-colors"
-            >
-              <ArrowRight className="w-5 h-5" />
-              <span className="text-[10px] font-bold mt-1">Visit</span>
-            </Link>
-          )}
-        </div>
-
-        {/* Medium+ screen: 2x2 grid layout */}
+        {/* All screens: 2x2 grid layout */}
         <div
-          className={`hidden md:grid border-t border-gray-300 ${
+          className={`grid border-t border-gray-300 ${
             disableNavigation ? "grid-cols-2" : "grid-cols-[1fr_1fr_80px]"
           }`}
         >

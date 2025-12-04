@@ -173,6 +173,30 @@ exports.Prisma.SpotlightScalarFieldEnum = {
   updatedAt: 'updatedAt'
 };
 
+exports.Prisma.DbCredentialScalarFieldEnum = {
+  id: 'id',
+  host: 'host',
+  port: 'port',
+  database: 'database',
+  username: 'username',
+  password: 'password',
+  ssl: 'ssl',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.StartupScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  slug: 'slug',
+  description: 'description',
+  logoUrl: 'logoUrl',
+  provider: 'provider',
+  credentialsId: 'credentialsId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -192,7 +216,9 @@ exports.Prisma.NullsOrder = {
 exports.Prisma.ModelName = {
   DatabaseConnection: 'DatabaseConnection',
   MetricSnapshot: 'MetricSnapshot',
-  Spotlight: 'Spotlight'
+  Spotlight: 'Spotlight',
+  DbCredential: 'DbCredential',
+  Startup: 'Startup'
 };
 
 /**
