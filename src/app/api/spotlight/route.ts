@@ -1,6 +1,7 @@
-import { NextRequest } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import { safeHandler } from "@/utils/safeHandler";
 import { prisma } from "@/lib/db";
+import { unstable_cache, revalidateTag } from "next/cache";
 
 interface CreateSpotlightRequest {
   name: string;
@@ -9,13 +10,8 @@ interface CreateSpotlightRequest {
   logo?: string;
 }
 
-/**
- * GET /api/spotlight
- * Gets all active spotlight startups (not expired)
- * Returns up to 20 active spotlights
- */
-export async function GET() {
-  return safeHandler(async () => {
+const getCachedSpotlights = unstable_cache(
+  async () => {
     const now = new Date();
 
     const spotlights = await prisma.spotlight.findMany({
@@ -28,7 +24,32 @@ export async function GET() {
     });
 
     return spotlights;
+  },
+  ["api-spotlights"],
+  {
+    revalidate: 60, // Revalidate every 60 seconds
+    tags: ["spotlights"],
+  }
+);
+
+/**
+ * GET /api/spotlight
+ * Gets all active spotlight startups (not expired)
+ * Returns up to 20 active spotlights
+ */
+export async function GET() {
+  const result = await safeHandler(async () => {
+    const spotlights = await getCachedSpotlights();
+    return spotlights;
   });
+
+  // Add cache headers to response
+  result.headers.set(
+    "Cache-Control",
+    "public, s-maxage=60, stale-while-revalidate=120"
+  );
+
+  return result;
 }
 
 /**
@@ -80,6 +101,9 @@ export async function POST(request: NextRequest) {
         isActive: true,
       },
     });
+
+    // Revalidate cache to show new spotlight immediately
+    revalidateTag("spotlights");
 
     return spotlight;
   });

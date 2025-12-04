@@ -1,4 +1,4 @@
-import { NextRequest } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import { safeHandler } from "@/utils/safeHandler";
 import { prisma } from "@/lib/db";
 import { createClientFromConnectionId } from "@/lib/db/queries/createClient";
@@ -111,5 +111,13 @@ export async function GET(request: NextRequest) {
 			total: formattedStartups.length,
 		};
 	});
+
+	// Add cache headers to response (5 min cache, 10 min stale-while-revalidate)
+	result.headers.set(
+		"Cache-Control",
+		"public, s-maxage=300, stale-while-revalidate=600"
+	);
+
+	return result;
 }
 

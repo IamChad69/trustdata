@@ -1,6 +1,7 @@
 "use client";
 
-import { useEffect, useState, useMemo } from "react";
+import { useMemo, useState } from "react";
+import { useQuery } from "@tanstack/react-query";
 import { SearchSection } from "@/app/(home)/components/search";
 import { SiteHeader } from "./components/site-header";
 import { StartupTable, type StartupData } from "./components/Startup-table";
@@ -17,39 +18,36 @@ const normalizeCategory = (category: string | undefined): string => {
   return category.toLowerCase().replace(/\s+/g, "-");
 };
 
+async function fetchStartups(): Promise<StartupData[]> {
+  const response = await fetch("/api/startups");
+  const data = await response.json();
+
+  if (!response.ok) {
+    throw new Error(data.message || "Failed to fetch startups");
+  }
+
+  return data.data?.startups || data.startups || [];
+}
+
 export default function Home() {
-  const [startups, setStartups] = useState<StartupData[]>([]);
-  const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
   const [view, setView] = useState<ViewMode>("table");
   const [category, setCategory] = useState<Category>("all");
 
-  useEffect(() => {
-    async function fetchStartups() {
-      try {
-        setIsLoading(true);
-        setError(null);
+  // Use React Query for client-side caching
+  const {
+    data: startups = [],
+    isLoading,
+    error: queryError,
+  } = useQuery<StartupData[]>({
+    queryKey: ["startups"],
+    queryFn: fetchStartups,
+    staleTime: 5 * 60 * 1000, // Consider data fresh for 5 minutes
+    gcTime: 10 * 60 * 1000, // Keep in cache for 10 minutes (formerly cacheTime)
+    refetchOnWindowFocus: false, // Don't refetch on window focus
+    refetchOnReconnect: true, // Refetch when connection is restored
+  });
 
-        const response = await fetch("/api/startups");
-        const data = await response.json();
-
-        if (!response.ok) {
-          throw new Error(data.message || "Failed to fetch startups");
-        }
-
-        setStartups(data.data?.startups || data.startups || []);
-      } catch (err) {
-        console.error("Error fetching startups:", err);
-        setError(
-          err instanceof Error ? err.message : "Failed to load startups"
-        );
-      } finally {
-        setIsLoading(false);
-      }
-    }
-
-    fetchStartups();
-  }, []);
+  const error = queryError instanceof Error ? queryError.message : null;
 
   // Filter startups based on selected category
   const filteredStartups = useMemo(() => {

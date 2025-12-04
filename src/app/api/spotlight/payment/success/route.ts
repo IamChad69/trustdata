@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { safeHandler } from "@/utils/safeHandler";
 import { getStripeSecretKey } from "@/utils/env";
 import { prisma } from "@/lib/db";
+import { revalidateTag } from "next/cache";
 import Stripe from "stripe";
 
 const stripe = new Stripe(getStripeSecretKey(), {
@@ -112,6 +113,9 @@ export async function POST(request: NextRequest) {
         paidAt: new Date(),
       },
     });
+
+    // Revalidate cache to show new spotlight immediately
+    revalidateTag("spotlights");
 
     return spotlight;
   });

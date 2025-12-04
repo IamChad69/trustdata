@@ -8,6 +8,7 @@ import { SpotlightSection } from "@/app/components/spotlight-section";
 import { MobileSpotlightCarousel } from "@/app/components/mobile-spotlight-carousel";
 import { Footer } from "@/app/(home)/components/footer";
 import { prisma } from "@/lib/db";
+import { unstable_cache } from "next/cache";
 
 const orbitron = localFont({
   src: "../utils/Orbitron-VariableFont_wght.ttf",
@@ -44,20 +45,46 @@ function getBaseUrl(): string {
 const baseUrl = getBaseUrl();
 
 export const metadata: Metadata = {
-  title: "TrustdB - Verified Startup Metrics",
-  description: "Trustpilot for SaaS metrics",
+  title: {
+    default: "TrustdB - TrustMRR | Verified SaaS Metrics & Startup Data",
+    template: "%s | TrustdB - TrustMRR",
+  },
+  description:
+    "TrustdB (TrustMRR) - Discover verified SaaS metrics and startup data. Browse real MRR, growth rates, and user metrics from trusted startups. The trusted source for SaaS metrics and startup analytics.",
+  keywords: [
+    "TrustdB",
+    "TrustMRR",
+    "SaaS metrics",
+    "startup metrics",
+    "MRR",
+    "monthly recurring revenue",
+    "SaaS data",
+    "startup analytics",
+    "verified metrics",
+    "SaaS companies",
+    "startup database",
+    "SaaS benchmarks",
+    "trusted metrics",
+  ],
+  authors: [{ name: "TrustdB" }],
+  creator: "TrustdB",
+  publisher: "TrustdB",
   metadataBase: new URL(baseUrl),
+  alternates: {
+    canonical: baseUrl,
+  },
   openGraph: {
-    title: "TrustdB - Verified Startup Metrics",
-    description: "Trustpilot for SaaS metrics",
+    title: "TrustdB - TrustMRR | Verified SaaS Metrics & Startup Data",
+    description:
+      "Discover verified SaaS metrics and startup data. Browse real MRR, growth rates, and user metrics from trusted startups.",
     url: baseUrl,
-    siteName: "TrustdB",
+    siteName: "TrustdB - TrustMRR",
     images: [
       {
         url: "/opengraph.png",
         width: 1200,
         height: 630,
-        alt: "TrustdB - Verified Startup Metrics",
+        alt: "TrustdB - Verified SaaS Metrics & Startup Data",
       },
     ],
     locale: "en_US",
@@ -65,29 +92,58 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "TrustdB - Verified Startup Metrics",
-    description: "Trustpilot for SaaS metrics",
+    title: "TrustdB - TrustMRR | Verified SaaS Metrics",
+    description:
+      "Discover verified SaaS metrics and startup data. Browse real MRR, growth rates, and user metrics.",
     images: ["/opengraph.png"],
+    creator: "@trustdb",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
+  verification: {
+    // Add these when you have them
+    // google: "your-google-verification-code",
+    // yandex: "your-yandex-verification-code",
   },
 };
 
-async function getSpotlights() {
-  try {
-    const now = new Date();
+const getCachedSpotlights = unstable_cache(
+  async () => {
+    try {
+      const now = new Date();
 
-    const spotlights = await prisma.spotlight.findMany({
-      where: {
-        isActive: true,
-        OR: [{ expiresAt: null }, { expiresAt: { gt: now } }],
-      },
-      orderBy: [{ position: "asc" }, { createdAt: "desc" }],
-      take: 20,
-    });
-    return spotlights;
-  } catch (error) {
-    console.error("Error fetching spotlights:", error);
-    return [];
+      const spotlights = await prisma.spotlight.findMany({
+        where: {
+          isActive: true,
+          OR: [{ expiresAt: null }, { expiresAt: { gt: now } }],
+        },
+        orderBy: [{ position: "asc" }, { createdAt: "desc" }],
+        take: 20,
+      });
+      return spotlights;
+    } catch (error) {
+      console.error("Error fetching spotlights:", error);
+      return [];
+    }
+  },
+  ["spotlights"],
+  {
+    revalidate: 60, // Revalidate every 60 seconds
+    tags: ["spotlights"],
   }
+);
+
+async function getSpotlights() {
+  return getCachedSpotlights();
 }
 
 export default async function RootLayout({
@@ -108,6 +164,82 @@ export default async function RootLayout({
     url: spotlight.url,
   }));
 
+  // Structured data for SEO
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "@id": `${baseUrl}/#website`,
+        url: baseUrl,
+        name: "TrustdB - TrustMRR",
+        description:
+          "TrustdB (TrustMRR) - Discover verified SaaS metrics and startup data. Browse real MRR, growth rates, and user metrics from trusted startups.",
+        potentialAction: {
+          "@type": "SearchAction",
+          target: {
+            "@type": "EntryPoint",
+            urlTemplate: `${baseUrl}/?search={search_term_string}`,
+          },
+          "query-input": "required name=search_term_string",
+        },
+        inLanguage: "en-US",
+      },
+      {
+        "@type": "Organization",
+        "@id": `${baseUrl}/#organization`,
+        name: "TrustdB",
+        alternateName: "TrustMRR",
+        url: baseUrl,
+        logo: {
+          "@type": "ImageObject",
+          url: `${baseUrl}/trustdb-logomark.svg`,
+        },
+        sameAs: [
+          // Add social media URLs when available
+          // "https://twitter.com/trustdb",
+          // "https://linkedin.com/company/trustdb",
+        ],
+      },
+      {
+        "@type": "WebPage",
+        "@id": `${baseUrl}/#webpage`,
+        url: baseUrl,
+        name: "TrustdB - TrustMRR | Verified SaaS Metrics & Startup Data",
+        description:
+          "Discover verified SaaS metrics and startup data. Browse real MRR, growth rates, and user metrics from trusted startups.",
+        isPartOf: {
+          "@id": `${baseUrl}/#website`,
+        },
+        about: {
+          "@id": `${baseUrl}/#organization`,
+        },
+        primaryImageOfPage: {
+          "@type": "ImageObject",
+          url: `${baseUrl}/opengraph.png`,
+        },
+        inLanguage: "en-US",
+      },
+      {
+        "@type": "ItemList",
+        "@id": `${baseUrl}/#itemlist`,
+        name: "Verified SaaS Startups",
+        description:
+          "List of verified SaaS startups with real metrics including MRR, growth rates, and user data",
+        itemListElement: spotlights.slice(0, 10).map((spotlight, index) => ({
+          "@type": "ListItem",
+          position: index + 1,
+          item: {
+            "@type": "SoftwareApplication",
+            name: spotlight.name,
+            description: spotlight.tagline,
+            url: spotlight.url,
+          },
+        })),
+      },
+    ],
+  };
+
   return (
     <html
       lang="en"
@@ -118,6 +250,10 @@ export default async function RootLayout({
         className={`${orbitron.variable} ${robotoMono.variable} ${shadowsIntoLight.variable} font-roboto-mono antialiased bg-[#e4e4e4] h-screen lg:overflow-hidden`}
         suppressHydrationWarning
       >
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+        />
         <TRPCReactProvider>
           <Toaster />
           {/* Mobile Spotlight Carousel - visible only on small screens */}
