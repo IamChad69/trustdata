@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useMemo } from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import { Spotlight } from "@/app/(home)/startup/[name]/spotlight";
 import { SpotlightModal } from "./spotlight-modal";

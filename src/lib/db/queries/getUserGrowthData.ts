@@ -98,11 +98,7 @@ export async function getUserGrowthData(
       WHERE "${createdAtCol}" < $1
     `;
 
-    const baselineResult = await client.query(baselineQuery, [startDate]);
-    const baselineCount = parseInt(
-      baselineResult.rows[0]?.baseline_count || "0",
-      10
-    );
+    await client.query(baselineQuery, [startDate]);
 
     // Determine interval based on time range
     // Use weekly for "all time" to avoid too many data points, daily for shorter ranges

@@ -192,6 +192,10 @@ const config = {
         "fromEnvVar": null,
         "value": "darwin-arm64",
         "native": true
+      },
+      {
+        "fromEnvVar": null,
+        "value": "rhel-openssl-3.0.x"
       }
     ],
     "previewFeatures": [],
@@ -209,6 +213,7 @@ const config = {
     "db"
   ],
   "activeProvider": "postgresql",
+  "postinstall": false,
   "inlineDatasources": {
     "db": {
       "url": {
@@ -217,8 +222,8 @@ const config = {
       }
     }
   },
-  "inlineSchema": "generator client {\n  provider = \"prisma-client-js\"\n  output   = \"../src/generated/prisma\"\n}\n\ndatasource db {\n  provider = \"postgresql\"\n  url      = env(\"DATABASE_URL\")\n}\n\nmodel DatabaseConnection {\n  id                 String           @id\n  name               String\n  provider           String\n  connectionString   String\n  selectedTables     String[]\n  createdAt          DateTime         @default(now())\n  updatedAt          DateTime\n  startupName        String\n  slug               String?          @unique\n  paidUsers          Int?\n  totalUsers         Int?\n  category           String?\n  description        String?\n  founderAvatar      String?\n  founderHandle      String?\n  founderName        String?\n  logo               String?\n  tagline            String?\n  website            String?\n  readOnlyConnString String?\n  readOnlyRoleName   String?\n  MetricSnapshot     MetricSnapshot[]\n}\n\nmodel MetricSnapshot {\n  id                 String             @id\n  connectionId       String\n  date               DateTime           @db.Date\n  totalUsers         Int                @default(0)\n  paidUsers          Int                @default(0)\n  activeUsers        Int                @default(0)\n  newSignups         Int                @default(0)\n  churnedUsers       Int                @default(0)\n  createdAt          DateTime           @default(now())\n  DatabaseConnection DatabaseConnection @relation(fields: [connectionId], references: [id], onDelete: Cascade)\n\n  @@unique([connectionId, date])\n  @@index([connectionId, date])\n}\n\nmodel Spotlight {\n  id                    String    @id @default(cuid())\n  name                  String\n  tagline               String\n  url                   String\n  logo                  String?\n  position              Int?\n  isActive              Boolean   @default(true)\n  expiresAt             DateTime?\n  stripePaymentIntentId String?\n  stripeSessionId       String?\n  paymentAmount         Int? // Amount in cents\n  paidAt                DateTime?\n  createdAt             DateTime  @default(now())\n  updatedAt             DateTime  @updatedAt\n\n  @@index([position])\n  @@index([isActive, expiresAt])\n}\n\nenum MessageType {\n  RESULT\n  ERROR\n}\n",
-  "inlineSchemaHash": "32700a58a9ac619e1f04e96ef286ddb19e9caac2c0f5d175211da42a8d0a762c",
+  "inlineSchema": "generator client {\n  provider      = \"prisma-client-js\"\n  output        = \"../src/generated/prisma\"\n  binaryTargets = [\"native\", \"rhel-openssl-3.0.x\"]\n}\n\ndatasource db {\n  provider = \"postgresql\"\n  url      = env(\"DATABASE_URL\")\n}\n\nmodel DatabaseConnection {\n  id                 String           @id\n  name               String\n  provider           String\n  connectionString   String\n  selectedTables     String[]\n  createdAt          DateTime         @default(now())\n  updatedAt          DateTime\n  startupName        String\n  slug               String?          @unique\n  paidUsers          Int?\n  totalUsers         Int?\n  category           String?\n  description        String?\n  founderAvatar      String?\n  founderHandle      String?\n  founderName        String?\n  logo               String?\n  tagline            String?\n  website            String?\n  readOnlyConnString String?\n  readOnlyRoleName   String?\n  MetricSnapshot     MetricSnapshot[]\n}\n\nmodel MetricSnapshot {\n  id                 String             @id\n  connectionId       String\n  date               DateTime           @db.Date\n  totalUsers         Int                @default(0)\n  paidUsers          Int                @default(0)\n  activeUsers        Int                @default(0)\n  newSignups         Int                @default(0)\n  churnedUsers       Int                @default(0)\n  createdAt          DateTime           @default(now())\n  DatabaseConnection DatabaseConnection @relation(fields: [connectionId], references: [id], onDelete: Cascade)\n\n  @@unique([connectionId, date])\n  @@index([connectionId, date])\n}\n\nmodel Spotlight {\n  id                    String    @id @default(cuid())\n  name                  String\n  tagline               String\n  url                   String\n  logo                  String?\n  position              Int?\n  isActive              Boolean   @default(true)\n  expiresAt             DateTime?\n  stripePaymentIntentId String?\n  stripeSessionId       String?\n  paymentAmount         Int? // Amount in cents\n  paidAt                DateTime?\n  createdAt             DateTime  @default(now())\n  updatedAt             DateTime  @updatedAt\n\n  @@index([position])\n  @@index([isActive, expiresAt])\n}\n\nenum MessageType {\n  RESULT\n  ERROR\n}\n",
+  "inlineSchemaHash": "66e87701fc72a45ba489c5ec3d03ec2c6e3a8cefc00c45c8e87f3220c2460676",
   "copyEngine": true
 }
 
@@ -259,6 +264,10 @@ Object.assign(exports, Prisma)
 // file annotations for bundling tools to include these files
 path.join(__dirname, "libquery_engine-darwin-arm64.dylib.node");
 path.join(process.cwd(), "src/generated/prisma/libquery_engine-darwin-arm64.dylib.node")
+
+// file annotations for bundling tools to include these files
+path.join(__dirname, "libquery_engine-rhel-openssl-3.0.x.so.node");
+path.join(process.cwd(), "src/generated/prisma/libquery_engine-rhel-openssl-3.0.x.so.node")
 // file annotations for bundling tools to include these files
 path.join(__dirname, "schema.prisma");
 path.join(process.cwd(), "src/generated/prisma/schema.prisma")

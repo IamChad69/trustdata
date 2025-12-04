@@ -36,7 +36,7 @@ export async function fetchProjectName(
 		// Format the database name to be more user-friendly
 		// Remove common prefixes/suffixes and format nicely
 		return formatDatabaseName(dbName);
-	} catch (error) {
+	} catch {
 		// Ensure client is closed even on error
 		try {
 			await client.end();

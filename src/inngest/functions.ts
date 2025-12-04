@@ -13,7 +13,7 @@ export const updateDatabaseMetrics = inngest.createFunction(
 	{
 		cron: '0 */3 * * *', // Every 3 hours at minute 0 (12:00 AM, 3:00 AM, 6:00 AM, 9:00 AM, 12:00 PM, 3:00 PM, 6:00 PM, 9:00 PM)
 	},
-	async ({ event, step }) => {
+	async ({ step }) => {
 		const results = await step.run('update-all-connections', async () => {
 			console.log('Starting scheduled database metrics update')
 			// Force update on schedule to ensure fresh data

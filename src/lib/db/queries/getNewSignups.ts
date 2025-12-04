@@ -68,7 +68,7 @@ export async function getNewSignups(
           );
           return count;
         }
-      } catch (error) {
+      } catch {
         continue;
       }
     }

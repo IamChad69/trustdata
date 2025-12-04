@@ -340,7 +340,9 @@ export function MetricGraph({ connectionId }: MetricGraphProps) {
               content={
                 <ChartTooltipContent
                   indicator="dot"
-                  labelFormatter={(value) => {
+                  labelFormatter={(
+                    value: unknown
+                  ): string | number | null | undefined => {
                     const point = chartData.find(
                       (d) => d.displayDate === value
                     );
@@ -348,7 +350,7 @@ export function MetricGraph({ connectionId }: MetricGraphProps) {
                       const date = parseISO(point.date + "T00:00:00");
                       return format(date, "MMM d, yyyy");
                     }
-                    return value;
+                    return value as string | number | null | undefined;
                   }}
                 />
               }
@@ -363,7 +365,6 @@ export function MetricGraph({ connectionId }: MetricGraphProps) {
           </AreaChart>
         </ChartContainer>
       </div>
-      
     </div>
   );
 }

@@ -72,13 +72,15 @@ export const metadata: Metadata = {
 
 async function getSpotlights() {
   try {
-    // Get all available spotlights (up to 20 when 10+ are filled)
-    const totalCount = await prisma.spotlight.count();
-    const takeLimit = totalCount >= 10 ? 20 : 10;
+    const now = new Date();
 
     const spotlights = await prisma.spotlight.findMany({
+      where: {
+        isActive: true,
+        OR: [{ expiresAt: null }, { expiresAt: { gt: now } }],
+      },
       orderBy: [{ position: "asc" }, { createdAt: "desc" }],
-      take: takeLimit,
+      take: 20,
     });
     return spotlights;
   } catch (error) {

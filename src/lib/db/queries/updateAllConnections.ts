@@ -1,4 +1,3 @@
-import { Client } from 'pg'
 import { prisma } from '@/lib/db'
 import { createClientFromConnectionId } from './createClient'
 import { getUserCount } from './getUserCount'
@@ -6,7 +5,6 @@ import { getActivePaidUsers } from './getActivePaidUsers'
 import {
 	wasRecentlyUpdated,
 	markAsUpdated,
-	clearUpdateCache,
 	CACHE_TTL,
 } from '@/lib/cache'
 
