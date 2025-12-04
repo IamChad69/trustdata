@@ -1,4 +1,4 @@
-import { NextRequest, NextResponse } from "next/server";
+import { NextRequest } from "next/server";
 import { safeHandler } from "@/utils/safeHandler";
 import { prisma } from "@/lib/db";
 import { createClientFromConnectionId } from "@/lib/db/queries/createClient";
@@ -10,7 +10,7 @@ import { getNewSignups } from "@/lib/db/queries/getNewSignups";
  * Fetches all startups from the database
  */
 export async function GET(request: NextRequest) {
-	return safeHandler(async () => {
+	const result = await safeHandler(async () => {
 		const searchParams = request.nextUrl.searchParams;
 		const limit = parseInt(searchParams.get("limit") || "100", 10);
 		const offset = parseInt(searchParams.get("offset") || "0", 10);

@@ -1,4 +1,4 @@
-import { NextRequest, NextResponse } from "next/server";
+import { NextRequest } from "next/server";
 import { safeHandler } from "@/utils/safeHandler";
 import { prisma } from "@/lib/db";
 import { unstable_cache, revalidateTag } from "next/cache";
