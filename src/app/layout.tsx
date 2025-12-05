@@ -68,7 +68,7 @@ export const metadata: Metadata = {
     siteName: "TrustdB",
     images: [
       {
-        url: `${baseUrl}/og_image.png`,
+        url: new URL("/og_image.png", baseUrl).toString(),
         width: 1200,
         height: 630,
         alt: "TrustdB - Real SaaS Metrics & Startup Data",
@@ -82,7 +82,7 @@ export const metadata: Metadata = {
     title: "TrustdB | Real SaaS Metrics",
     description:
       "Discover real SaaS metrics and startup data. Browse verified MRR, growth rates, and user metrics.",
-    images: [`${baseUrl}/og_image.png`],
+    images: [new URL("/og_image.png", baseUrl).toString()],
     creator: "@trustdb",
   },
   robots: {
