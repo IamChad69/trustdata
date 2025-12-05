@@ -19,12 +19,12 @@ const normalizeCategory = (category: string | undefined): string => {
 };
 
 async function fetchStartups(): Promise<StartupData[]> {
-  const response = await fetch("/api/startups");
-  const data = await response.json();
+        const response = await fetch("/api/startups");
+        const data = await response.json();
 
-  if (!response.ok) {
-    throw new Error(data.message || "Failed to fetch startups");
-  }
+        if (!response.ok) {
+          throw new Error(data.message || "Failed to fetch startups");
+        }
 
   return data.data?.startups || data.startups || [];
 }
