@@ -45,7 +45,7 @@ export async function POST(request: NextRequest) {
             price_data: {
               currency: "usd",
               product_data: {
-                name: "TrustMRR Spotlight - One-time Advance",
+                name: "TrustdB Spotlight - One-time Advance",
                 description: "Secure your spotlight position for 1 month",
               },
               unit_amount: body.amount,

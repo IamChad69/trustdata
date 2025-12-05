@@ -9,6 +9,7 @@ import { MobileSpotlightCarousel } from "@/app/components/mobile-spotlight-carou
 import { Footer } from "@/app/(home)/components/footer";
 import { prisma } from "@/lib/db";
 import { unstable_cache } from "next/cache";
+import { getBaseUrl } from "@/utils/env";
 
 const orbitron = localFont({
   src: "../utils/Orbitron-VariableFont_wght.ttf",
@@ -29,38 +30,24 @@ const shadowsIntoLight = Shadows_Into_Light({
   weight: "400",
   display: "swap",
 });
-function getBaseUrl(): string {
-  // Check for NEXT_PUBLIC_APP_URL first (custom domain)
-  if (process.env.NEXT_PUBLIC_APP_URL) {
-    return process.env.NEXT_PUBLIC_APP_URL;
-  }
-  // Check for VERCEL_URL (automatically set by Vercel)
-  if (process.env.VERCEL_URL) {
-    return `https://${process.env.VERCEL_URL}`;
-  }
-  // Fallback to localhost for development
-  return "http://localhost:3000";
-}
-
 const baseUrl = getBaseUrl();
 
 export const metadata: Metadata = {
   title: {
-    default: "TrustdB - TrustMRR | Verified SaaS Metrics & Startup Data",
-    template: "%s | TrustdB - TrustMRR",
+    default: "TrustdB | Real SaaS Metrics & Startup Data",
+    template: "%s | TrustdB",
   },
   description:
-    "TrustdB (TrustMRR) - Discover verified SaaS metrics and startup data. Browse real MRR, growth rates, and user metrics from trusted startups. The trusted source for SaaS metrics and startup analytics.",
+    "TrustdB - Discover real SaaS metrics and startup data. Browse verified MRR, growth rates, and user metrics from trusted startups. The trusted source for SaaS metrics and startup analytics.",
   keywords: [
     "TrustdB",
-    "TrustMRR",
     "SaaS metrics",
     "startup metrics",
     "MRR",
     "monthly recurring revenue",
     "SaaS data",
     "startup analytics",
-    "verified metrics",
+    "real metrics",
     "SaaS companies",
     "startup database",
     "SaaS benchmarks",
@@ -74,17 +61,17 @@ export const metadata: Metadata = {
     canonical: baseUrl,
   },
   openGraph: {
-    title: "TrustdB - TrustMRR | Verified SaaS Metrics & Startup Data",
+    title: "TrustdB | Real SaaS Metrics & Startup Data",
     description:
-      "Discover verified SaaS metrics and startup data. Browse real MRR, growth rates, and user metrics from trusted startups.",
+      "Discover real SaaS metrics and startup data. Browse verified MRR, growth rates, and user metrics from trusted startups.",
     url: baseUrl,
-    siteName: "TrustdB - TrustMRR",
+    siteName: "TrustdB",
     images: [
       {
-        url: "/opengraph.png",
+        url: `${baseUrl}/og_image.png`,
         width: 1200,
         height: 630,
-        alt: "TrustdB - Verified SaaS Metrics & Startup Data",
+        alt: "TrustdB - Real SaaS Metrics & Startup Data",
       },
     ],
     locale: "en_US",
@@ -92,10 +79,10 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "TrustdB - TrustMRR | Verified SaaS Metrics",
+    title: "TrustdB | Real SaaS Metrics",
     description:
-      "Discover verified SaaS metrics and startup data. Browse real MRR, growth rates, and user metrics.",
-    images: ["/opengraph.png"],
+      "Discover real SaaS metrics and startup data. Browse verified MRR, growth rates, and user metrics.",
+    images: [`${baseUrl}/og_image.png`],
     creator: "@trustdb",
   },
   robots: {
@@ -172,9 +159,9 @@ export default async function RootLayout({
         "@type": "WebSite",
         "@id": `${baseUrl}/#website`,
         url: baseUrl,
-        name: "TrustdB - TrustMRR",
+        name: "TrustdB",
         description:
-          "TrustdB (TrustMRR) - Discover verified SaaS metrics and startup data. Browse real MRR, growth rates, and user metrics from trusted startups.",
+          "TrustdB - Discover real SaaS metrics and startup data. Browse verified MRR, growth rates, and user metrics from trusted startups.",
         potentialAction: {
           "@type": "SearchAction",
           target: {
@@ -189,7 +176,6 @@ export default async function RootLayout({
         "@type": "Organization",
         "@id": `${baseUrl}/#organization`,
         name: "TrustdB",
-        alternateName: "TrustMRR",
         url: baseUrl,
         logo: {
           "@type": "ImageObject",
@@ -205,9 +191,9 @@ export default async function RootLayout({
         "@type": "WebPage",
         "@id": `${baseUrl}/#webpage`,
         url: baseUrl,
-        name: "TrustdB - TrustMRR | Verified SaaS Metrics & Startup Data",
+        name: "TrustdB | Real SaaS Metrics & Startup Data",
         description:
-          "Discover verified SaaS metrics and startup data. Browse real MRR, growth rates, and user metrics from trusted startups.",
+          "Discover real SaaS metrics and startup data. Browse verified MRR, growth rates, and user metrics from trusted startups.",
         isPartOf: {
           "@id": `${baseUrl}/#website`,
         },
@@ -216,16 +202,16 @@ export default async function RootLayout({
         },
         primaryImageOfPage: {
           "@type": "ImageObject",
-          url: `${baseUrl}/opengraph.png`,
+          url: `${baseUrl}/og_image.png`,
         },
         inLanguage: "en-US",
       },
       {
         "@type": "ItemList",
         "@id": `${baseUrl}/#itemlist`,
-        name: "Verified SaaS Startups",
+        name: "Real SaaS Startups",
         description:
-          "List of verified SaaS startups with real metrics including MRR, growth rates, and user data",
+          "List of real SaaS startups with verified metrics including MRR, growth rates, and user data",
         itemListElement: spotlights.slice(0, 10).map((spotlight, index) => ({
           "@type": "ListItem",
           position: index + 1,
